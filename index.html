@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>AegisMobile — PRO192 PE & FE Mobile Companion</title>
@@ -806,10 +809,12 @@
   <link rel="manifest" href="./manifest.json">
   <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
   <link rel="apple-touch-icon" href="./icon-192.png">
-  <script>
+    <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW reg error:', err));
+        navigator.serviceWorker.register('./sw.js?v=3.5').then(reg => {
+          reg.update();
+        }).catch(err => console.log('SW reg error:', err));
       });
     }
   </script>
@@ -30653,10 +30658,9 @@ descSet.addAll(bookSet);`)">
     // Working list of questions for active FE subject
     let feActiveBank = [];
 
-    // Realtime Two-Way Auto-Sync State
-    const SYNC_CLOUD_ENDPOINT = "https://api.restful-api.dev/objects/ff808181a09d98f701a1de3e02442fe4";
-    const SYNC_BACKUP_ENDPOINT = "https://ntfy.sh/aegis_sync_tridung_2026";
-    let lastLocalEditTime = Date.now();
+        // Realtime Two-Way Auto-Sync State (Unlimited ntfy.sh direct channel)
+    const SYNC_CLOUD_ENDPOINT = "https://ntfy.sh/aegis_sync_tridung_2026";
+    let lastLocalEditTime = 0; // Starts at 0: Never reject Cloud data on initial load
     let lastCloudSyncTime = 0;
     let autoSyncPushTimer = null;
     let isSyncing = false;
@@ -30734,7 +30738,8 @@ descSet.addAll(bookSet);`)">
       checkAutoResume();
 
       // Silent Auto-Pull from Cloud on startup
-      setTimeout(() => executeCloudPull(true), 600);
+      executeCloudPull(true);
+      setTimeout(() => executeCloudPull(true), 500);
 
       // Check Cloud when user returns to app
       document.addEventListener("visibilitychange", () => {
@@ -31220,6 +31225,7 @@ descSet.addAll(bookSet);`)">
     }
 
     function triggerAutoSyncPush() {
+      lastLocalEditTime = Date.now();
       clearTimeout(autoSyncPushTimer);
       setMobileSyncStatus("🔄 Đang tự lưu...", "syncing");
       autoSyncPushTimer = setTimeout(() => {
@@ -31227,99 +31233,78 @@ descSet.addAll(bookSet);`)">
       }, 1200);
     }
 
-    async function executeCloudPush(isSilent) {
-      if (isSyncing) return;
+        async function executeCloudPush(isSilent) {
+      if (isSyncing) return false;
       isSyncing = true;
       const payload = getUnifiedSyncPayload();
 
       try {
-        // Primary Endpoint
-        const resp = await fetch(SYNC_CLOUD_ENDPOINT, {
-          method: "PUT",
+        const resp = await fetch("https://ntfy.sh/aegis_sync_tridung_2026", {
+          method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name: "AEGIS_SYNC_TRIDUNG", data: payload })
+          body: JSON.stringify(payload)
         });
         if (resp.ok) {
           lastCloudSyncTime = payload.timestamp;
-          const timeStr = new Date(payload.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-          setMobileSyncStatus("🟢 Tự động đồng bộ (" + timeStr + ")", "ok");
-          const timeInfoEl = document.getElementById("syncTimeInfo");
-          if (timeInfoEl) timeInfoEl.textContent = "Cập nhật lúc: " + timeStr;
           isSyncing = false;
-          if (!isSilent) showToast("Đã lưu tiến độ lên Cloud! ☁️");
+          if (!isSilent) showToast("☁️ Đã lưu tiến độ lên Cloud!");
           return true;
         }
       } catch(err) {
-        console.warn("Primary push failed, falling back to backup:", err);
+        console.warn("Push failed:", err);
       }
 
-      // Backup Endpoint
-      try {
-        const resp2 = await fetch(SYNC_BACKUP_ENDPOINT, {
-          method: "POST",
-          body: JSON.stringify(payload)
-        });
-        if (resp2.ok) {
-          lastCloudSyncTime = payload.timestamp;
-          const timeStr = new Date(payload.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-          setMobileSyncStatus("🟢 Tự động đồng bộ [B] (" + timeStr + ")", "ok");
-          isSyncing = false;
-          if (!isSilent) showToast("Đã lưu tiến độ (kênh dự phòng)! ☁️");
-          return true;
-        }
-      } catch(err2) {
-        console.warn("Backup push failed:", err2);
-      }
-
-      setMobileSyncStatus("⚠️ Lưu offline", "error");
       isSyncing = false;
-      if (!isSilent) showToast("Lưu offline (Chưa có mạng)! 📋");
       return false;
     }
 
     async function executeCloudPull(isSilent) {
-      if (isSyncing) return;
+      if (isSyncing) return false;
       isSyncing = true;
       let cloudData = null;
 
       try {
-        const resp = await fetch(SYNC_CLOUD_ENDPOINT);
+        const resp = await fetch("https://ntfy.sh/aegis_sync_tridung_2026/json?poll=1", { cache: "no-store" });
         if (resp.ok) {
-          const res = await resp.json();
-          if (res && res.data && res.data.timestamp) {
-            cloudData = res.data;
+          const text = await resp.text();
+          const lines = text.trim().split("
+");
+          // Loop backwards to find the newest valid sync message
+          for (let i = lines.length - 1; i >= 0; i--) {
+            try {
+              const entry = JSON.parse(lines[i]);
+              if (entry && entry.message) {
+                const parsed = JSON.parse(entry.message);
+                if (parsed && parsed.syncVersion && parsed.answers && typeof parsed.qIdx === 'number') {
+                  cloudData = parsed;
+                  break;
+                }
+              }
+            } catch(e) {}
           }
         }
       } catch(err) {
-        console.warn("Primary pull failed, trying backup:", err);
-      }
-
-      if (!cloudData) {
-        try {
-          const resp2 = await fetch(SYNC_BACKUP_ENDPOINT + "/json?poll=1");
-          if (resp2.ok) {
-            const text = await resp2.text();
-            const lines = text.trim().split("\n");
-            if (lines.length > 0) {
-              const lastMsg = JSON.parse(lines[lines.length - 1]);
-              if (lastMsg && lastMsg.message) {
-                cloudData = JSON.parse(lastMsg.message);
-              }
-            }
-          }
-        } catch(err2) {
-          console.warn("Backup pull failed:", err2);
-        }
+        console.warn("Pull from ntfy failed:", err);
       }
 
       isSyncing = false;
 
       if (!cloudData) {
-        if (!isSilent) alert("Chưa có phiên lưu nào trên Cloud hoặc không thể kết nối mạng.");
+        if (!isSilent) showToast("⚠️ Chưa có bản lưu Cloud nào!");
         return false;
       }
 
-      if (isSilent && cloudData.timestamp <= lastLocalEditTime + 500) {
+      // Conflict resolution:
+      // If user hasn't edited locally on this tab (lastLocalEditTime === 0),
+      // OR cloud timestamp is newer than our local edits,
+      // OR cloud has more answers than local:
+      const localAnsCount = Object.keys(feAnswers || {}).length;
+      const cloudAnsCount = Object.keys(cloudData.answers || {}).length;
+      const shouldApply = (lastLocalEditTime === 0) || 
+                          (cloudData.timestamp > lastLocalEditTime) ||
+                          (cloudAnsCount > localAnsCount);
+
+      if (!shouldApply) {
         return false;
       }
 
