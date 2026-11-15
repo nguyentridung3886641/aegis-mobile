@@ -984,7 +984,7 @@ descSet.addAll(bookSet);`)">
           <button class="m-act-btn" onclick="shuffleFeOptions()">
             <span>🎲</span> <span>Trộn đáp án</span>
           </button>
-          <button class="m-act-btn" onclick="redoFeWrong()">
+          <button id="feBtnRedoWrong" class="m-act-btn" onclick="redoFeWrong()">
             <span>🔄</span> <span>Làm lại sai</span>
           </button>
           <button class="m-act-btn" style="color:var(--danger);" onclick="resetFeSession()">
@@ -30654,6 +30654,9 @@ descSet.addAll(bookSet);`)">
     let feFilter = 'all';
     let feShowAll = false;
     let feExpAll = false;
+    let feIsRedoMode = false;
+    let feRedoAnswers = {};
+    let feRedoEvaluated = {};
 
     // Working list of questions for active FE subject
     let feActiveBank = [];
@@ -30877,6 +30880,14 @@ descSet.addAll(bookSet);`)">
 
     // FE Quiz Logic
     function initFeBank() {
+      feIsRedoMode = false;
+      feRedoAnswers = {};
+      feRedoEvaluated = {};
+      const redoBtn = document.getElementById("feBtnRedoWrong");
+      if (redoBtn) {
+        redoBtn.classList.remove("active");
+        redoBtn.innerHTML = `<span>🔄</span> <span>Làm lại sai</span>`;
+      }
       const raw = BUILTIN_BANKS[feSubject] || [];
       raw.forEach((q, i) => {
         q.__origIdx = i;
@@ -30884,6 +30895,13 @@ descSet.addAll(bookSet);`)">
       window.__feIdToOrigIdx = new Map(raw.map((q, i) => [q.id, i]));
       window.__feMasterTotal = raw.length;
       feActiveBank = JSON.parse(JSON.stringify(raw));
+    }
+
+    function exitFeRedoMode() {
+      initFeBank();
+      renderFeQuestion();
+      renderFeNavGrid();
+      showToast("Đã quay lại danh sách toàn bộ câu hỏi!");
     }
 
     function changeFeSubject() {
@@ -30951,21 +30969,16 @@ descSet.addAll(bookSet);`)">
 
         function redoFeWrong() {
       const fullBank = BUILTIN_BANKS[feSubject] || [];
-      const isRedoMode = feActiveBank.length < fullBank.length;
 
-      if (isRedoMode) {
+      if (feIsRedoMode) {
         if (confirm("Bạn đang ở chế độ làm lại câu sai. Bạn có muốn quay lại danh sách toàn bộ câu hỏi không?")) {
-          initFeBank();
-          renderFeQuestion();
-          renderFeNavGrid();
-          showToast("Đã quay lại toàn bộ ngân hàng câu hỏi!");
+          exitFeRedoMode();
           return;
         }
+        return;
       }
 
       const wrongList = [];
-      const wrongKeysToClear = [];
-
       fullBank.forEach((q, idx) => {
         const key = feSubject + "_" + idx;
         const sel = feAnswers[key];
@@ -30974,36 +30987,40 @@ descSet.addAll(bookSet);`)">
           const qCopy = JSON.parse(JSON.stringify(q));
           qCopy.__origIdx = idx;
           wrongList.push(qCopy);
-          wrongKeysToClear.push(key);
         }
       });
 
       if (wrongList.length === 0) {
-        showToast("🎉 Hiện tại chưa có câu làm sai nào trong môn này!");
+        showToast("🎉 Hiện tại bạn chưa có câu làm sai nào trong môn này!");
         return;
       }
 
       if (confirm(`Tìm thấy ${wrongList.length} câu làm sai. Bắt đầu làm lại từ đầu (toàn bộ đáp án và giải thích sẽ được ẩn)?`)) {
-        // 1. Xóa toàn bộ lịch sử đã chọn của các câu sai này để người dùng tự chọn lại từ đầu
-        wrongKeysToClear.forEach(k => delete feAnswers[k]);
+        feIsRedoMode = true;
+        feRedoAnswers = {};
+        feRedoEvaluated = {};
 
-        // 2. Tắt chế độ hiện đáp án & hiện giải thích
+        // Tắt chế độ hiện đáp án & hiện giải thích
         feShowAll = false;
         feExpAll = false;
-        const btnAns = document.getElementById("btnFeToggleAnswers");
+        const btnAns = document.getElementById("feBtnShowAll");
         if (btnAns) btnAns.classList.remove("active");
-        const btnExp = document.getElementById("btnFeToggleExplanations");
+        const btnExp = document.getElementById("feBtnExpAll");
         if (btnExp) btnExp.classList.remove("active");
 
-        // 3. Nạp danh sách câu sai làm ngân hàng câu hỏi hiện tại
+        const redoBtn = document.getElementById("feBtnRedoWrong");
+        if (redoBtn) {
+          redoBtn.classList.add("active");
+          redoBtn.innerHTML = `<span>🔙</span> <span>Về đề chính</span>`;
+        }
+
+        // Nạp danh sách câu sai làm ngân hàng hiện tại
         feActiveBank = wrongList;
         feQIdx = 0;
 
         renderFeQuestion();
         renderFeNavGrid();
-        saveLocalSession();
-        triggerAutoSyncPush();
-        showToast(`🔥 Đang làm lại ${wrongList.length} câu sai (Đã ẩn đáp án)!`);
+        showToast(`🔥 Đang làm lại ${wrongList.length} câu sai (Toàn bộ đáp án đã được ẩn)!`);
       }
     }
 
@@ -31013,24 +31030,32 @@ descSet.addAll(bookSet);`)">
           if (k.startsWith(feSubject + "_")) delete feAnswers[k];
         });
         feFlags = new Set(Array.from(feFlags).filter(f => !f.startsWith(feSubject + "_")));
+        feRedoAnswers = {};
+        feRedoEvaluated = {};
         feQIdx = 0;
         initFeBank();
         renderFeQuestion();
+        renderFeNavGrid();
+        saveLocalSession();
         triggerAutoSyncPush();
-        showToast("Đã đặt lại tiến độ môn học! 🗑️");
+        showToast("Đã đặt lại toàn bộ lịch sử làm bài môn này!");
       }
     }
 
     function toggleFeFlagCurrent() {
-      safeVibrate(20);
+      if (feActiveBank.length === 0) return;
       const q = feActiveBank[feQIdx];
-      const qKey = feSubject + "_" + (q && q.__origIdx !== undefined ? q.__origIdx : feQIdx);
+      const origIdx = (q && q.__origIdx !== undefined)
+        ? q.__origIdx
+        : (window.__feIdToOrigIdx && window.__feIdToOrigIdx.has(q.id) ? window.__feIdToOrigIdx.get(q.id) : feQIdx);
+      const qKey = feSubject + "_" + origIdx;
+
       if (feFlags.has(qKey)) {
         feFlags.delete(qKey);
-        showToast("Đã bỏ đánh dấu câu");
+        showToast("Đã bỏ đánh dấu câu này!");
       } else {
         feFlags.add(qKey);
-        showToast("Đã đánh dấu câu để ôn lại ⭐");
+        showToast("⭐ Đã đánh dấu xem lại!");
       }
       updateFlagButton();
       renderFeNavGrid();
@@ -31039,12 +31064,23 @@ descSet.addAll(bookSet);`)">
     }
 
     function updateFlagButton() {
-      const qKey = feSubject + "_" + feQIdx;
-      const btn = document.getElementById("btnFlagCurrent");
+      if (feActiveBank.length === 0) return;
+      const q = feActiveBank[feQIdx];
+      const origIdx = (q && q.__origIdx !== undefined)
+        ? q.__origIdx
+        : (window.__feIdToOrigIdx && window.__feIdToOrigIdx.has(q.id) ? window.__feIdToOrigIdx.get(q.id) : feQIdx);
+      const qKey = feSubject + "_" + origIdx;
+      const isFlag = feFlags.has(qKey);
+
+      const btn = document.getElementById("feBtnFlagCurrent");
       if (btn) {
-        const isFlag = feFlags.has(qKey);
-        btn.classList.toggle("flagged", isFlag);
-        btn.innerHTML = isFlag ? '<span>⭐</span> <span>Đã Đánh Dấu</span>' : '<span>☆</span> <span>Đánh Dấu</span>';
+        if (isFlag) {
+          btn.classList.add("active");
+          btn.innerHTML = "<span>⭐</span> <span>Đã gắn sao</span>";
+        } else {
+          btn.classList.remove("active");
+          btn.innerHTML = "<span>☆</span> <span>Đánh dấu</span>";
+        }
       }
     }
 
@@ -31054,15 +31090,17 @@ descSet.addAll(bookSet);`)">
       if (feQIdx >= feActiveBank.length) feQIdx = feActiveBank.length - 1;
 
       const q = feActiveBank[feQIdx];
-      const qKey = feSubject + "_" + (q.__origIdx !== undefined ? q.__origIdx : feQIdx);
       const origIdx = (q && q.__origIdx !== undefined)
         ? q.__origIdx
         : (window.__feIdToOrigIdx && window.__feIdToOrigIdx.has(q.id) ? window.__feIdToOrigIdx.get(q.id) : feQIdx);
+      const qKey = feSubject + "_" + origIdx;
       const origNum = origIdx + 1;
       const totalCount = window.__feMasterTotal || ((BUILTIN_BANKS[feSubject] || []).length || feActiveBank.length);
 
-      if (feActiveBank.length < totalCount || q.__origIdx !== undefined) {
-        document.getElementById("feQNumBadge").textContent = `CÂU ${origNum} / ${totalCount} (Sai: ${feQIdx + 1}/${feActiveBank.length})`;
+      if (feIsRedoMode) {
+        document.getElementById("feQNumBadge").textContent = `CÂU ${origNum} / ${totalCount} (Làm lại sai: ${feQIdx + 1}/${feActiveBank.length})`;
+      } else if (feActiveBank.length < totalCount || q.__origIdx !== undefined) {
+        document.getElementById("feQNumBadge").textContent = `CÂU ${origNum} / ${totalCount} (${feQIdx + 1}/${feActiveBank.length})`;
       } else {
         document.getElementById("feQNumBadge").textContent = `Câu ${origNum} / ${totalCount}`;
       }
@@ -31084,8 +31122,20 @@ descSet.addAll(bookSet);`)">
       const optGrid = document.getElementById("feOptionsGrid");
       optGrid.innerHTML = "";
       const letters = ["A", "B", "C", "D", "E", "F"];
-      const currentSelectedArr = feAnswers[qKey];
-      const currentSelected = currentSelectedArr ? currentSelectedArr[0] : undefined;
+
+      // Khi ở chế độ Làm lại sai, TUYỆT ĐỐI KHÔNG hiện đáp án nếu người dùng chưa chọn ở lượt làm lại này!
+      let isEvaluated = false;
+      let currentSelected = undefined;
+
+      if (feIsRedoMode) {
+        isEvaluated = !!feRedoEvaluated[qKey];
+        const currentSelectedArr = feRedoAnswers[qKey];
+        currentSelected = currentSelectedArr ? currentSelectedArr[0] : undefined;
+      } else {
+        const currentSelectedArr = feAnswers[qKey];
+        currentSelected = currentSelectedArr ? currentSelectedArr[0] : undefined;
+        isEvaluated = (currentSelected !== undefined);
+      }
 
       q.options.forEach((opt, oIdx) => {
         const optEl = document.createElement("div");
@@ -31094,9 +31144,14 @@ descSet.addAll(bookSet);`)">
         const isCorrectOpt = (q.correct_indices && q.correct_indices.includes(oIdx)) || (q.correct_index === oIdx);
         if (feShowAll) {
           if (isCorrectOpt) optEl.classList.add("correct");
-        } else if (currentSelected !== undefined) {
-          if (isCorrectOpt) optEl.classList.add("correct");
-          else if (oIdx === currentSelected) optEl.classList.add("wrong");
+        } else if (isEvaluated) {
+          if (isCorrectOpt) {
+            optEl.classList.add("correct");
+          } else if (oIdx === currentSelected) {
+            optEl.classList.add("wrong");
+          }
+        } else if (currentSelected === oIdx) {
+          optEl.classList.add("selected");
         }
 
         optEl.onclick = () => selectFeOption(oIdx);
@@ -31108,7 +31163,7 @@ descSet.addAll(bookSet);`)">
       });
 
       const expBox = document.getElementById("feExplanation");
-      if ((feShowAll || feExpAll || currentSelected !== undefined) && q.explanation) {
+      if ((feShowAll || feExpAll || isEvaluated) && q.explanation) {
         expBox.style.display = "block";
         expBox.innerHTML = `<b>Giải thích chuẩn:</b><br>${escapeHtml(q.explanation).replace(/\n/g, '<br>')}`;
       } else {
@@ -31126,20 +31181,30 @@ descSet.addAll(bookSet);`)">
       let answeredCount = 0;
 
       feActiveBank.forEach((q, idx) => {
-        const key = feSubject + "_" + (q.__origIdx !== undefined ? q.__origIdx : idx);
-        const sel = feAnswers[key];
-        const hasAnswered = (sel && sel.length > 0);
-        if (hasAnswered) answeredCount++;
+        const origIdx = (q && q.__origIdx !== undefined)
+          ? q.__origIdx
+          : (window.__feIdToOrigIdx && window.__feIdToOrigIdx.has(q.id) ? window.__feIdToOrigIdx.get(q.id) : idx);
+        const key = feSubject + "_" + origIdx;
+        const origNum = origIdx + 1;
 
-        const isCorrectOpt = hasAnswered && ((q.correct_indices && q.correct_indices.includes(sel[0])) || (q.correct_index === sel[0]));
+        let sel = undefined;
+        let isEvaluated = false;
+
+        if (feIsRedoMode) {
+          sel = feRedoAnswers[key];
+          isEvaluated = !!feRedoEvaluated[key];
+        } else {
+          sel = feAnswers[key];
+          isEvaluated = (sel && sel.length > 0);
+        }
+
+        if (isEvaluated) answeredCount++;
+
+        const isCorrectOpt = isEvaluated && sel && ((q.correct_indices && q.correct_indices.includes(sel[0])) || (q.correct_index === sel[0]));
         const isFlag = feFlags.has(key);
 
         const cell = document.createElement("button");
         cell.className = "fe-cell";
-        const origIdx = (q && q.__origIdx !== undefined)
-          ? q.__origIdx
-          : (window.__feIdToOrigIdx && window.__feIdToOrigIdx.has(q.id) ? window.__feIdToOrigIdx.get(q.id) : idx);
-        const origNum = origIdx + 1;
 
         if (idx === feQIdx) cell.classList.add("current");
         if (isFlag) {
@@ -31149,24 +31214,25 @@ descSet.addAll(bookSet);`)">
           cell.textContent = String(origNum);
         }
 
-        if (feShowAll || hasAnswered) {
-          if (hasAnswered) {
+        if (feShowAll || isEvaluated) {
+          if (isEvaluated) {
             if (isCorrectOpt) cell.classList.add("correct");
             else cell.classList.add("wrong");
           }
         }
 
-        // Filter status dimming
-        if (feFilter === "unanswered" && hasAnswered) cell.classList.add("dimmed");
-        else if (feFilter === "answered" && !hasAnswered) cell.classList.add("dimmed");
-        else if (feFilter === "correct" && (!hasAnswered || !isCorrectOpt)) cell.classList.add("dimmed");
-        else if (feFilter === "wrong" && (!hasAnswered || isCorrectOpt)) cell.classList.add("dimmed");
-        else if (feFilter === "flagged" && !isFlag) cell.classList.add("dimmed");
+        // Filter status dimming (chỉ áp dụng ở chế độ thường)
+        if (!feIsRedoMode) {
+          if (feFilter === "unanswered" && isEvaluated) cell.classList.add("dimmed");
+          else if (feFilter === "answered" && !isEvaluated) cell.classList.add("dimmed");
+          else if (feFilter === "correct" && (!isEvaluated || !isCorrectOpt)) cell.classList.add("dimmed");
+          else if (feFilter === "wrong" && (!isEvaluated || isCorrectOpt)) cell.classList.add("dimmed");
+          else if (feFilter === "flagged" && !isFlag) cell.classList.add("dimmed");
+        }
 
         cell.onclick = () => {
           feQIdx = idx;
           renderFeQuestion();
-          triggerAutoSyncPush();
           document.getElementById("feCard")?.scrollIntoView({ behavior: "smooth", block: "start" });
         };
 
@@ -31174,7 +31240,13 @@ descSet.addAll(bookSet);`)">
       });
 
       const info = document.getElementById("feGridCountInfo");
-      if (info) info.textContent = `CLICK ĐỂ TỚI CÂU (${answeredCount}/${feActiveBank.length})`;
+      if (info) {
+        if (feIsRedoMode) {
+          info.textContent = `LÀM LẠI CÂU SAI (${answeredCount}/${feActiveBank.length})`;
+        } else {
+          info.textContent = `CLICK ĐỂ TỚI CÂU (${answeredCount}/${feActiveBank.length})`;
+        }
+      }
 
       const currentCell = grid.querySelector(".fe-cell.current");
       if (currentCell) {
@@ -31189,27 +31261,34 @@ descSet.addAll(bookSet);`)">
         ? q.__origIdx
         : (window.__feIdToOrigIdx && window.__feIdToOrigIdx.has(q.id) ? window.__feIdToOrigIdx.get(q.id) : feQIdx);
       const qKey = feSubject + "_" + origIdx;
-      feAnswers[qKey] = [oIdx];
 
       const isCorr = (q.correct_indices && q.correct_indices.includes(oIdx)) || (q.correct_index === oIdx);
-      const isRedo = (q.__origIdx !== undefined) || (feActiveBank.length < (window.__feMasterTotal || 600));
 
-      if (isCorr) {
-        if (isRedo) {
+      if (feIsRedoMode) {
+        feRedoAnswers[qKey] = [oIdx];
+        feRedoEvaluated[qKey] = true;
+
+        if (isCorr) {
           // Làm lại câu sai ĐÚNG:
-          // 1. Tự động đánh dấu sao (*) vào danh sách ôn tập cuối bài
+          // 1. Cập nhật đáp án đúng vào ngân hàng chính
+          feAnswers[qKey] = [oIdx];
+          // 2. Tự động đánh dấu sao (*) để ôn tập lại lúc cuối
           feFlags.add(qKey);
-          showToast("⭐ Đã làm đúng! Tự động đánh dấu vào danh sách ôn tập cuối bài.");
+          showToast("⭐ Đã làm đúng! Tự động gỡ khỏi câu sai & đánh dấu ⭐ ôn tập.");
+          triggerAutoSyncPush();
+        } else {
+          // Vẫn làm sai:
+          showToast("❌ Chưa đúng! Hãy đọc kỹ giải thích bên dưới.");
         }
-      } else {
-        // Làm sai lại: gỡ sao (nếu có)
-        feFlags.delete(qKey);
+
+        renderFeQuestion();
+        return;
       }
 
+      feAnswers[qKey] = [oIdx];
       renderFeQuestion();
       triggerAutoSyncPush();
     }
-
     function prevFeQuestion() {
       if (feQIdx > 0) {
         feQIdx--;
@@ -31284,7 +31363,7 @@ descSet.addAll(bookSet);`)">
       if (Array.isArray(data.fcReview)) fcStats.review = new Set(data.fcReview);
 
       // Question index
-      if (typeof data.qIdx === 'number' && data.qIdx >= 0) {
+      if (!feIsRedoMode && typeof data.qIdx === 'number' && data.qIdx >= 0) {
         feQIdx = Math.min(data.qIdx, feActiveBank.length - 1);
       }
 
