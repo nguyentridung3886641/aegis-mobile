@@ -30878,6 +30878,11 @@ descSet.addAll(bookSet);`)">
     // FE Quiz Logic
     function initFeBank() {
       const raw = BUILTIN_BANKS[feSubject] || [];
+      raw.forEach((q, i) => {
+        q.__origIdx = i;
+      });
+      window.__feIdToOrigIdx = new Map(raw.map((q, i) => [q.id, i]));
+      window.__feMasterTotal = raw.length;
       feActiveBank = JSON.parse(JSON.stringify(raw));
     }
 
@@ -30945,8 +30950,19 @@ descSet.addAll(bookSet);`)">
     }
 
         function redoFeWrong() {
-      // Find all wrong questions
-      const fullBank = BUILTIN_BANKS[feSubject] || feActiveBank;
+      const fullBank = BUILTIN_BANKS[feSubject] || [];
+      const isRedoMode = feActiveBank.length < fullBank.length;
+
+      if (isRedoMode) {
+        if (confirm("Bạn đang ở chế độ làm lại câu sai. Bạn có muốn quay lại danh sách toàn bộ câu hỏi không?")) {
+          initFeBank();
+          renderFeQuestion();
+          renderFeNavGrid();
+          showToast("Đã quay lại toàn bộ ngân hàng câu hỏi!");
+          return;
+        }
+      }
+
       const wrongList = [];
       const wrongKeysToClear = [];
 
@@ -31039,11 +31055,16 @@ descSet.addAll(bookSet);`)">
 
       const q = feActiveBank[feQIdx];
       const qKey = feSubject + "_" + (q.__origIdx !== undefined ? q.__origIdx : feQIdx);
-      const origNum = (q.__origIdx !== undefined) ? (q.__origIdx + 1) : (feQIdx + 1);
-      if (q.__origIdx !== undefined) {
-        document.getElementById("feQNumBadge").textContent = `CÂU ${origNum} [Làm lại sai: ${feQIdx + 1}/${feActiveBank.length}]`;
+      const origIdx = (q && q.__origIdx !== undefined)
+        ? q.__origIdx
+        : (window.__feIdToOrigIdx && window.__feIdToOrigIdx.has(q.id) ? window.__feIdToOrigIdx.get(q.id) : feQIdx);
+      const origNum = origIdx + 1;
+      const totalCount = window.__feMasterTotal || ((BUILTIN_BANKS[feSubject] || []).length || feActiveBank.length);
+
+      if (feActiveBank.length < totalCount || q.__origIdx !== undefined) {
+        document.getElementById("feQNumBadge").textContent = `CÂU ${origNum} / ${totalCount} (Sai: ${feQIdx + 1}/${feActiveBank.length})`;
       } else {
-        document.getElementById("feQNumBadge").textContent = `Câu ${origNum} / ${feActiveBank.length}`;
+        document.getElementById("feQNumBadge").textContent = `Câu ${origNum} / ${totalCount}`;
       }
       
       const topicEl = document.getElementById("feTopicBadge");
@@ -31115,7 +31136,10 @@ descSet.addAll(bookSet);`)">
 
         const cell = document.createElement("button");
         cell.className = "fe-cell";
-        const origNum = (q.__origIdx !== undefined) ? (q.__origIdx + 1) : (idx + 1);
+        const origIdx = (q && q.__origIdx !== undefined)
+          ? q.__origIdx
+          : (window.__feIdToOrigIdx && window.__feIdToOrigIdx.has(q.id) ? window.__feIdToOrigIdx.get(q.id) : idx);
+        const origNum = origIdx + 1;
 
         if (idx === feQIdx) cell.classList.add("current");
         if (isFlag) {
@@ -31161,14 +31185,25 @@ descSet.addAll(bookSet);`)">
     function selectFeOption(oIdx) {
       safeVibrate(25);
       const q = feActiveBank[feQIdx];
-      const qKey = feSubject + "_" + (q && q.__origIdx !== undefined ? q.__origIdx : feQIdx);
+      const origIdx = (q && q.__origIdx !== undefined)
+        ? q.__origIdx
+        : (window.__feIdToOrigIdx && window.__feIdToOrigIdx.has(q.id) ? window.__feIdToOrigIdx.get(q.id) : feQIdx);
+      const qKey = feSubject + "_" + origIdx;
       feAnswers[qKey] = [oIdx];
 
-      // Tự động đánh dấu sao (*) khi câu sai được làm lại đúng
       const isCorr = (q.correct_indices && q.correct_indices.includes(oIdx)) || (q.correct_index === oIdx);
-      if (isCorr && q.__origIdx !== undefined) {
-        feFlags.add(qKey);
-        showToast("⭐ Đã làm đúng! Tự động đánh dấu vào danh sách ôn tập cuối bài.");
+      const isRedo = (q.__origIdx !== undefined) || (feActiveBank.length < (window.__feMasterTotal || 600));
+
+      if (isCorr) {
+        if (isRedo) {
+          // Làm lại câu sai ĐÚNG:
+          // 1. Tự động đánh dấu sao (*) vào danh sách ôn tập cuối bài
+          feFlags.add(qKey);
+          showToast("⭐ Đã làm đúng! Tự động đánh dấu vào danh sách ôn tập cuối bài.");
+        }
+      } else {
+        // Làm sai lại: gỡ sao (nếu có)
+        feFlags.delete(qKey);
       }
 
       renderFeQuestion();
