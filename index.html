@@ -1011,7 +1011,7 @@ descSet.addAll(bookSet);`)">
             <span class="q-badge-blue" id="feQNumBadge">Câu 1 / 642</span>
             <span class="q-badge-topic" id="feTopicBadge">Chương 1</span>
           </div>
-          <button id="btnFlagCurrent" class="btn-flag-m" onclick="toggleFeFlagCurrent()">
+          <button id="btnFlagCurrent" class="btn-flag-m" style="display:none !important;" onclick="toggleFeFlagCurrent()">
             <span>⭐</span>
             <span>Đánh dấu</span>
           </button>
@@ -31116,10 +31116,14 @@ descSet.addAll(bookSet);`)">
         const cell = document.createElement("button");
         cell.className = "fe-cell";
         const origNum = (q.__origIdx !== undefined) ? (q.__origIdx + 1) : (idx + 1);
-        cell.textContent = String(origNum);
 
         if (idx === feQIdx) cell.classList.add("current");
-        if (isFlag) cell.classList.add("flagged");
+        if (isFlag) {
+          cell.classList.add("flagged");
+          cell.innerHTML = `${origNum}<span style="font-size:8px; color:#facc15; margin-left:1px;">⭐</span>`;
+        } else {
+          cell.textContent = String(origNum);
+        }
 
         if (feShowAll || hasAnswered) {
           if (hasAnswered) {
@@ -31159,6 +31163,14 @@ descSet.addAll(bookSet);`)">
       const q = feActiveBank[feQIdx];
       const qKey = feSubject + "_" + (q && q.__origIdx !== undefined ? q.__origIdx : feQIdx);
       feAnswers[qKey] = [oIdx];
+
+      // Tự động đánh dấu sao (*) khi câu sai được làm lại đúng
+      const isCorr = (q.correct_indices && q.correct_indices.includes(oIdx)) || (q.correct_index === oIdx);
+      if (isCorr && q.__origIdx !== undefined) {
+        feFlags.add(qKey);
+        showToast("⭐ Đã làm đúng! Tự động đánh dấu vào danh sách ôn tập cuối bài.");
+      }
+
       renderFeQuestion();
       triggerAutoSyncPush();
     }
