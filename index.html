@@ -31345,8 +31345,7 @@ descSet.addAll(bookSet);`)">
         const resp = await fetch("https://ntfy.sh/aegis_sync_tridung_2026/json?poll=1", { cache: "no-store" });
         if (resp.ok) {
           const text = await resp.text();
-          const lines = text.trim().split("
-");
+          const lines = text.trim().split("\n");
           // Loop backwards to find the newest valid sync message
           for (let i = lines.length - 1; i >= 0; i--) {
             try {
