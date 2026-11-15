@@ -820,11 +820,7 @@
   <header class="top-bar">
     <div class="brand-title">
       <span>⚡ AegisMobile</span>
-      <span class="brand-badge">PRO192 PE</span>
-    </div>
-    <div class="sync-status-btn" onclick="switchTab('sync')">
-      <div class="sync-dot" id="topSyncDot"></div>
-      <span id="topSyncStatus">🟢 Tự đồng bộ: Sẵn sàng</span>
+      <span class="brand-badge" style="background:rgba(88,166,255,0.15); color:var(--primary);">FE & PE COMPANION</span>
     </div>
   </header>
 
@@ -1031,7 +1027,7 @@ descSet.addAll(bookSet);`)">
     </section>
 
     <!-- TAB 5: CROSS-DEVICE SYNC -->
-    <section id="pane-sync" class="tab-pane">
+    <section id="pane-sync" class="tab-pane" style="display:none !important;">
       <div class="sync-card">
         <h3 style="font-size:16px; margin-bottom:8px; color:var(--primary);">⚡ Đồng Bộ 2 Chiều Tự Động (Auto-Sync)</h3>
         <p style="font-size:13px; color:var(--text-muted); margin-bottom:14px; line-height:1.4;">
@@ -1084,10 +1080,7 @@ descSet.addAll(bookSet);`)">
       <span class="nav-icon">🎯</span>
       <span>Thi FE</span>
     </div>
-    <div class="nav-item" onclick="switchTab('sync')">
-      <span class="nav-icon">🔄</span>
-      <span>Đồng Bộ</span>
-    </div>
+
   </nav>
 
   <!-- Application Logic -->
@@ -1133,7 +1126,7 @@ descSet.addAll(bookSet);`)">
                         3
                 ],
                 "correct_index": 3,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 1 - Network Fundamentals): Câu hỏi tập trung vào General Networking. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 DHCP (Dynamic Host Configuration Protocol - UDP Port 67/68) ho\u1ea1t \u0111\u1ed9ng theo quy tr\u00ecnh 4 b\u01b0\u1edbc DORA: Discover (Qu\u1ea3ng b\u00e1 t\u00ecm Server) -> Offer (Server ch\u00e0o m\u1eddi IP) -> Request (Client xin nh\u1eadn IP) -> Acknowledge (Server x\u00e1c nh\u1eadn).\n\u2022 DHCP t\u1ef1 \u0111\u1ed9ng h\u00f3a to\u00e0n b\u1ed9 vi\u1ec7c c\u1ea5p ph\u00e1t \u0111\u1ecba ch\u1ec9 IP, Subnet Mask, Default Gateway v\u00e0 DNS Server cho thi\u1ebft b\u1ecb \u0111\u1ea7u cu\u1ed1i, tr\u00e1nh xung \u0111\u1ed9t IP do c\u1ea5u h\u00ecnh th\u1ee7 c\u00f4ng.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"DHCP\" (Dynamic Host Configuration Protocol).\n\n\u274c PH\u00c2N T\u00cdCH B\u1eaaY:\n\u2022 DNS: Ph\u00e2n gi\u1ea3i t\u00ean mi\u1ec1n (FQDN) ra \u0111\u1ecba ch\u1ec9 IP.\n\u2022 Traceroute: \u0110o l\u01b0\u1eddng v\u00e0 d\u00f2 tuy\u1ebfn \u0111\u01b0\u1eddng c\u00e1c hop m\u1ea1ng.\n\u2022 Telnet: Qu\u1ea3n tr\u1ecb thi\u1ebft b\u1ecb d\u00f2ng l\u1ec7nh kh\u00f4ng m\u00e3 h\u00f3a.\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: \"automatically assigns IP addresses\" = DHCP."
         },
         {
                 "id": "NWC_003",
@@ -1152,7 +1145,7 @@ descSet.addAll(bookSet);`)">
                         2
                 ],
                 "correct_index": 2,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 1 - Network Fundamentals): Câu hỏi tập trung vào General Networking. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 K\u00fd t\u1ef1 'U' trong k\u1ebft qu\u1ea3 ping c\u1ee7a Cisco IOS l\u00e0 vi\u1ebft t\u1eaft c\u1ee7a ICMP Destination Unreachable (Type 3).\n\u2022 Khi m\u1ed9t router tr\u00ean \u0111\u01b0\u1eddng truy\u1ec1n nh\u1eadn \u0111\u01b0\u1ee3c g\u00f3i tin nh\u01b0ng kh\u00f4ng t\u00ecm th\u1ea5y tuy\u1ebfn \u0111\u01b0\u1eddng (route) ph\u00f9 h\u1ee3p trong b\u1ea3ng \u0111\u1ecbnh tuy\u1ebfn (routing table) \u0111\u1ec3 chuy\u1ec3n ti\u1ebfp, n\u00f3 s\u1ebd h\u1ee7y g\u00f3i v\u00e0 g\u1eedi th\u00f4ng b\u00e1o ICMP Type 3 v\u1ec1 cho m\u00e1y ngu\u1ed3n.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"A router along the path did not have a route to the destination.\"\n\n\u274c PH\u00c2N T\u00cdCH B\u1eaaY:\n\u2022 K\u00fd t\u1ef1 '.' = Request timed out (ch\u1edd ph\u1ea3n h\u1ed3i qu\u00e1 h\u1ea1n).\n\u2022 K\u00fd t\u1ef1 '!' = Nh\u1eadn Echo Reply th\u00e0nh c\u00f4ng.\n\u2022 K\u00fd t\u1ef1 'U' = Unreachable (router trung gian thi\u1ebfu route chuy\u1ec3n ti\u1ebfp).\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Th\u1ea5y ch\u1eef 'U' trong ping Cisco = Unreachable = Router thi\u1ebfu route."
         },
         {
                 "id": "NWC_004",
@@ -1171,7 +1164,7 @@ descSet.addAll(bookSet);`)">
                         2
                 ],
                 "correct_index": 2,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 1 - Network Fundamentals): Câu hỏi tập trung vào General Networking. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Qu\u1ea3n tr\u1ecb thi\u1ebft b\u1ecb m\u1ea1ng t\u1eeb xa (Remote Management) qua m\u00f4i tr\u01b0\u1eddng m\u1ea1ng kh\u00f4ng tin c\u1eady (nh\u01b0 m\u1ea1ng gi\u1eefa c\u00e1c t\u00f2a nh\u00e0 ho\u1eb7c Internet) b\u1eaft bu\u1ed9c ph\u1ea3i m\u00e3 h\u00f3a to\u00e0n b\u1ed9 d\u1eef li\u1ec7u \u0111i\u1ec1u khi\u1ec3n v\u00e0 m\u1eadt kh\u1ea9u \u0111\u0103ng nh\u1eadp \u0111\u1ec3 ch\u1ed1ng l\u1ea1i c\u00e1c cu\u1ed9c t\u1ea5n c\u00f4ng nghe l\u00e9n (sniffing / packet sniffing).\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"SSH\" (Secure Shell - TCP Port 22) s\u1eed d\u1ee5ng m\u1eadt m\u00e3 b\u1ea5t \u0111\u1ed1i x\u1ee9ng (RSA/ECC) v\u00e0 m\u1eadt m\u00e3 \u0111\u1ed1i x\u1ee9ng (AES) \u0111\u1ec3 b\u1ea3o v\u1ec7 to\u00e0n v\u1eb9n v\u00e0 b\u00ed m\u1eadt phi\u00ean l\u00e0m vi\u1ec7c.\n\n\u274c PH\u00c2N T\u00cdCH B\u1eaaY:\n\u2022 Telnet (Port 23) truy\u1ec1n b\u1ea3n r\u00f5 (plaintext) c\u1ef1c k\u1ef3 nguy hi\u1ec3m.\n\u2022 HTTP (Port 80) v\u00e0 FTP (Port 21) kh\u00f4ng m\u00e3 h\u00f3a m\u1eadt kh\u1ea9u.\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: \"securely access network devices\" = SSH."
         },
         {
                 "id": "NWC_005",
@@ -1190,7 +1183,7 @@ descSet.addAll(bookSet);`)">
                         1
                 ],
                 "correct_index": 1,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 8 - Network Layer & Routing): Câu hỏi tập trung vào Routing Operations. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Router l\u00e0 thi\u1ebft b\u1ecb Layer 3 \u0111\u01b0a ra quy\u1ebft \u0111\u1ecbnh chuy\u1ec3n ti\u1ebfp g\u00f3i tin d\u1ef1a tr\u00ean B\u1ea3ng \u0111\u1ecbnh tuy\u1ebfn (Routing Table). M\u1ed7i d\u00f2ng trong b\u1ea3ng \u0111\u1ecbnh tuy\u1ebfn ch\u1ee9a m\u1ea1ng \u0111\u00edch (Destination Network), \u0111\u1ecba ch\u1ec9 tr\u1ea1m k\u1ebf ti\u1ebfp (Next-hop IP), v\u00e0 c\u1ed5ng ra tr\u1ef1c ti\u1ebfp (Exit Interface).\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"show ip route\" - L\u1ec7nh hi\u1ec3n th\u1ecb to\u00e0n b\u1ed9 b\u1ea3ng \u0111\u1ecbnh tuy\u1ebfn IPv4 tr\u00ean Cisco IOS.\n\n\u274c PH\u00c2N T\u00cdCH B\u1eaaY:\n\u2022 show interfaces: Ch\u1ec9 xem th\u00f4ng s\u1ed1 v\u1eadt l\u00fd c\u1ed5ng (status, speed, duplex, MTU).\n\u2022 show ip arp: Ch\u1ec9 xem b\u1ea3ng \u00e1nh x\u1ea1 Layer 3 IP sang Layer 2 MAC Address.\n\u2022 show cdp neighbors: Ch\u1ec9 xem th\u00f4ng tin thi\u1ebft b\u1ecb Cisco k\u1ebft n\u1ed1i tr\u1ef1c ti\u1ebfp.\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: T\u00ecm c\u1ed5ng ra t\u1edbi m\u1ea1ng t\u1eeb xa (remote networks) = show ip route."
         },
         {
                 "id": "NWC_006",
@@ -1209,7 +1202,7 @@ descSet.addAll(bookSet);`)">
                         3
                 ],
                 "correct_index": 3,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 8 - Network Layer & Routing): Câu hỏi tập trung vào Routing Operations. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Ping ho\u1ea1t \u0111\u1ed9ng \u1edf Layer 3 (IP & ICMP). Khi ping gi\u1eefa 2 router k\u1ebft n\u1ed1i tr\u1ef1c ti\u1ebfp b\u1ecb th\u1ea5t b\u1ea1i, qu\u1ea3n tr\u1ecb vi\u00ean c\u1ea7n ki\u1ec3m tra xem t\u1ea7ng d\u01b0\u1edbi (Layer 2 & Layer 1) c\u00f3 ho\u1ea1t \u0111\u1ed9ng b\u00ecnh th\u01b0\u1eddng hay kh\u00f4ng.\n\u2022 Giao th\u1ee9c CDP (Cisco Discovery Protocol) ho\u1ea1t \u0111\u1ed9ng \u0111\u1ed9c l\u1eadp \u1edf Layer 2 (Data Link). N\u1ebfu l\u1ec7nh 'show cdp neighbors' v\u1eabn th\u1ea5y R2, ch\u1ee9ng t\u1ecf c\u00e1p v\u1eadt l\u00fd (Layer 1) v\u00e0 \u0111\u00f3ng g\u00f3i Data Link (Layer 2) ho\u00e0n to\u00e0n t\u1ed1t; l\u1ed7i ping 100% n\u1eb1m \u1edf Layer 3 (sai IP, sai Subnet Mask, ho\u1eb7c d\u00ednh Access-List).\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"The network administrator wants to verify Layer 2 connectivity.\"\n\n\u274c PH\u00c2N T\u00cdCH B\u1eaaY:\n\u2022 CDP kh\u00f4ng ch\u1ea1y \u1edf Layer 3 v\u00e0 kh\u00f4ng ki\u1ec3m tra \u0111\u01b0\u1ee3c c\u1ed5ng d\u1ecbch v\u1ee5 hay c\u1ea5u h\u00ecnh IP.\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Ping fail (L3) m\u00e0 d\u00f9ng CDP -> Ki\u1ec3m tra Layer 2."
         },
         {
                 "id": "NWC_007",
@@ -1228,7 +1221,7 @@ descSet.addAll(bookSet);`)">
                         3
                 ],
                 "correct_index": 3,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 1 - Network Fundamentals): Câu hỏi tập trung vào General Networking. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Protocol analyzer (c\u00f4ng c\u1ee5 ph\u00e2n t\u00edch giao th\u1ee9c nh\u01b0 Wireshark) b\u1eaft v\u00e0 gi\u1ea3i m\u00e3 c\u00e1c g\u00f3i tin lu\u00e2n chuy\u1ec3n tr\u00ean \u0111\u01b0\u1eddng truy\u1ec1n, gi\u00fap qu\u1ea3n tr\u1ecb vi\u00ean ghi nh\u1eadn l\u01b0u l\u01b0\u1ee3ng th\u1ef1c t\u1ebf, t\u1ef7 l\u1ec7 c\u00e1c lo\u1ea1i d\u1ecbch v\u1ee5 m\u1ea1ng (HTTP, VoIP, Video, DB) v\u00e0 dung l\u01b0\u1ee3ng b\u0103ng th\u00f4ng \u0111\u1ec9nh tr\u01b0\u1edbc khi l\u1eadp d\u1ef1 \u00e1n n\u00e2ng c\u1ea5p m\u1ea1ng.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"to document and analyze network traffic requirements on each network segment\"\n\n\u274c PH\u00c2N T\u00cdCH B\u1eaaY:\n\u2022 Protocol analyzer ch\u1ec9 l\u00e0 c\u00f4ng c\u1ee5 gi\u00e1m s\u00e1t th\u1ee5 \u0111\u1ed9ng, kh\u00f4ng d\u00f9ng \u0111\u1ec3 c\u1ea5u h\u00ecnh t\u1ef1 \u0111\u1ed9ng hay di\u1ec7t virus.\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Protocol analyzer = capture & analyze traffic requirements."
         },
         {
                 "id": "NWC_008",
@@ -1247,7 +1240,7 @@ descSet.addAll(bookSet);`)">
                         0
                 ],
                 "correct_index": 0,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 8 - Network Layer & Routing): Câu hỏi tập trung vào Routing Operations. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 T\u1ea5n c\u00f4ng Brute-force d\u00f9ng ph\u1ea7n m\u1ec1m th\u1eed li\u00ean t\u1ee5c h\u00e0ng ngh\u00ecn m\u1eadt kh\u1ea9u trong th\u1eddi gian ng\u1eafn.\n\u2022 Tr\u00ean Cisco IOS, c\u01a1 ch\u1ebf Login Enhancement cho ph\u00e9p t\u1ea1m th\u1eddi kh\u00f3a c\u1ed5ng \u0111\u0103ng nh\u1eadp n\u1ebfu ph\u00e1t hi\u1ec7n s\u1ed1 l\u1ea7n th\u1eed sai v\u01b0\u1ee3t qu\u00e1 ng\u01b0\u1ee1ng quy \u0111\u1ecbnh.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"login block-for 60 attempts 5 within 60\" - Ngh\u0129a l\u00e0: Kh\u00f3a \u0111\u0103ng nh\u1eadp trong 60 gi\u00e2y n\u1ebfu c\u00f3 5 l\u1ea7n nh\u1eadp sai trong v\u00f2ng 60 gi\u00e2y.\n\n\u274c PH\u00c2N T\u00cdCH B\u1eaaY:\n\u2022 service password-encryption: Ch\u1ec9 m\u00e3 h\u00f3a m\u1eadt kh\u1ea9u trong file config d\u1ea1ng Type 7, kh\u00f4ng ch\u1eb7n \u0111\u01b0\u1ee3c brute-force.\n\u2022 exec-timeout: Ch\u1ec9 t\u1ef1 ng\u1eaft phi\u00ean \u0111\u0103ng nh\u1eadp khi ng\u01b0\u1eddi d\u00f9ng kh\u00f4ng thao t\u00e1c.\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Ch\u1ed1ng brute-force m\u1eadt kh\u1ea9u tr\u00ean router = login block-for."
         },
         {
                 "id": "NWC_009",
@@ -1268,7 +1261,7 @@ descSet.addAll(bookSet);`)">
                         2
                 ],
                 "correct_index": 0,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 14 - Transport Layer Protocols): Câu hỏi tập trung vào TCP / UDP & Ports. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 L\u1ec7nh 'exec-timeout <ph\u00fat> <gi\u00e2y>' thi\u1ebft l\u1eadp th\u1eddi gian t\u1ef1 \u0111\u1ed9ng ng\u1eaft phi\u00ean l\u00e0m vi\u1ec7c (auto logout) khi ng\u01b0\u1eddi qu\u1ea3n tr\u1ecb r\u1eddi m\u00e1y m\u00e0 kh\u00f4ng thao t\u00e1c (idle).\n\u2022 T\u00ednh n\u0103ng n\u00e0y \u00e1p d\u1ee5ng cho c\u00e1c c\u1ed5ng qu\u1ea3n tr\u1ecb t\u01b0\u01a1ng t\u00e1c d\u00f2ng l\u1ec7nh (CLI management ports): C\u1ed5ng v\u1eadt l\u00fd Console (console ports) v\u00e0 C\u1ed5ng \u0111i\u1ec1u khi\u1ec3n t\u1eeb xa Telnet/SSH (vty ports).\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"console ports\" v\u00e0 \"vty ports\"\n\n\u274c PH\u00c2N T\u00cdCH B\u1eaaY:\n\u2022 C\u1ed5ng Ethernet (FastEthernet, GigabitEthernet) v\u00e0 c\u1ed5ng Serial l\u00e0 c\u1ed5ng truy\u1ec1n t\u1ea3i d\u1eef li\u1ec7u g\u00f3i tin, kh\u00f4ng ph\u1ea3i c\u1ed5ng phi\u00ean \u0111\u0103ng nh\u1eadp qu\u1ea3n tr\u1ecb.\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Exec-timeout ch\u1ec9 c\u1ea5u h\u00ecnh tr\u00ean: console ports v\u00e0 vty ports."
         },
         {
                 "id": "NWC_010",
@@ -1287,7 +1280,7 @@ descSet.addAll(bookSet);`)">
                         3
                 ],
                 "correct_index": 3,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 1 - Network Fundamentals): Câu hỏi tập trung vào General Networking. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Redundancy (T\u00ednh d\u1ef1 ph\u00f2ng) trong ki\u1ebfn tr\u00fac m\u1ea1ng l\u00e0 vi\u1ec7c l\u1eafp \u0111\u1eb7t c\u00e1c tuy\u1ebfn \u0111\u01b0\u1eddng song song (dual homing, etherchannel) v\u00e0 thi\u1ebft b\u1ecb thay th\u1ebf (redundant switches, HSRP/VRRP routers).\n\u2022 M\u1ee5c ti\u00eau c\u1ed1t l\u00f5i: Khi m\u1ed9t d\u00e2y c\u00e1p b\u1ecb \u0111\u1ee9t ho\u1eb7c m\u1ed9t switch b\u1ecb ch\u00e1y ngu\u1ed3n, m\u1ea1ng v\u1eabn duy tr\u00ec k\u1ebft n\u1ed1i li\u1ec1n m\u1ea1ch, kh\u00f4ng t\u1ed3n t\u1ea1i \u0111i\u1ec3m l\u1ed7i \u0111\u01a1n l\u1ebb (Single Point of Failure - SPOF).\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"designing a network to use multiple paths between switches to ensure there is no single point of failure\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Redundancy = multiple paths, no single point of failure."
         },
         {
                 "id": "NWC_011",
@@ -1306,7 +1299,7 @@ descSet.addAll(bookSet);`)">
                         0
                 ],
                 "correct_index": 0,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 16 - Network Security & Device Hardening): Câu hỏi tập trung vào Device Security & Hardening. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Khung b\u1ea3o m\u1eadt AAA c\u1ee7a Cisco g\u1ed3m 3 tr\u1ee5 c\u1ed9t:\n  1. Authentication (X\u00e1c th\u1ef1c): Y\u00eau c\u1ea7u ng\u01b0\u1eddi d\u00f9ng ch\u1ee9ng minh danh t\u00ednh (\"prove who they are\") qua username, password, token, v\u00e2n tay.\n  2. Authorization (\u1ee6y quy\u1ec1n): X\u00e1c \u0111\u1ecbnh ng\u01b0\u1eddi d\u00f9ng c\u00f3 quy\u1ec1n l\u00e0m g\u00ec (\"what they can do/access\").\n  3. Accounting (Ghi nh\u1eadt k\u00fd): Ghi l\u1ea1i nh\u1eefng h\u00e0nh \u0111\u1ed9ng ng\u01b0\u1eddi d\u00f9ng \u0111\u00e3 th\u1ef1c hi\u1ec7n (\"what they did\").\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"to require users to prove who they are\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Authentication = \"prove who they are\"."
         },
         {
                 "id": "NWC_012",
@@ -1329,7 +1322,7 @@ descSet.addAll(bookSet);`)">
                         4
                 ],
                 "correct_index": 0,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 14 - Transport Layer Protocols): Câu hỏi tập trung vào TCP / UDP & Ports. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Quy tr\u00ecnh chu\u1ea9n 4 b\u01b0\u1edbc c\u1ea5u h\u00ecnh SSH tr\u00ean Cisco Router:\n  1. \u0110\u1eb7t Hostname v\u00e0 T\u00ean mi\u1ec1n: 'ip domain-name <name>'\n  2. T\u1ea1o c\u1eb7p kh\u00f3a m\u00e3 h\u00f3a b\u1ea5t \u0111\u1ed1i x\u1ee9ng: 'crypto key generate rsa'\n  3. T\u1ea1o t\u00e0i kho\u1ea3n c\u1ee5c b\u1ed9: 'username <user> secret <password>'\n  4. C\u1ea5u h\u00ecnh \u0111\u01b0\u1eddng vty ('line vty 0 4'): 'login local' v\u00e0 'transport input ssh'.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n1. \"Generate the asymmetric RSA keys.\"\n2. \"Create a valid local username and password database.\"\n3. \"Configure the correct IP domain name.\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: SSH c\u1ea7n 3 y\u1ebfu t\u1ed1: domain name, RSA keys, local username/password."
         },
         {
                 "id": "NWC_013",
@@ -1348,7 +1341,7 @@ descSet.addAll(bookSet);`)">
                         0
                 ],
                 "correct_index": 0,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 16 - Network Security & Device Hardening): Câu hỏi tập trung vào Device Security & Hardening. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Trojan horse (Ng\u1ef1a th\u00e0nh Troy) l\u00e0 lo\u1ea1i m\u00e3 \u0111\u1ed9c ng\u1ee5y trang d\u01b0\u1edbi h\u00ecnh th\u1ee9c m\u1ed9t \u1ee9ng d\u1ee5ng h\u1eefu \u00edch, tr\u00f2 ch\u01a1i (video game) ho\u1eb7c ph\u1ea7n m\u1ec1m ti\u1ec7n \u00edch h\u1ee3p ph\u00e1p \u0111\u1ec3 l\u1eeba ng\u01b0\u1eddi d\u00f9ng t\u1ef1 tay t\u1ea3i v\u1ec1 v\u00e0 c\u00e0i \u0111\u1eb7t. Trojan kh\u00f4ng c\u00f3 kh\u1ea3 n\u0103ng t\u1ef1 nh\u00e2n b\u1ea3n.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"malware that was written to look like a video game\"\n\n\u274c PH\u00c2N T\u00cdCH B\u1eaaY:\n\u2022 T\u1ef1 nh\u00e2n b\u1ea3n v\u00e0 t\u1ef1 l\u00e2y qua m\u1ea1ng m\u00e0 kh\u00f4ng c\u1ea7n t\u01b0\u01a1ng t\u00e1c ng\u01b0\u1eddi d\u00f9ng l\u00e0 Worm (S\u00e2u).\n\u2022 L\u00e2y nhi\u1ec5m b\u1eb1ng c\u00e1ch g\u1eafn m\u00e3 \u0111\u1ed9c v\u00e0o c\u00e1c file th\u1ef1c thi (.exe) l\u00e0 Virus.\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Trojan = ng\u1ee5y trang ph\u1ea7n m\u1ec1m v\u00f4 h\u1ea1i / video game."
         },
         {
                 "id": "NWC_014",
@@ -1367,7 +1360,7 @@ descSet.addAll(bookSet);`)">
                         1
                 ],
                 "correct_index": 1,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 13 - ICMP & Network Diagnostics): Câu hỏi tập trung vào ICMP & Troubleshooting. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 B\u00ecnh th\u01b0\u1eddng khi g\u00f5 'ping <IP>', Cisco IOS s\u1ebd t\u1ef1 \u0111\u1ed9ng ch\u1ecdn IP c\u1ee7a c\u1ed5ng ra (exit interface) l\u00e0m \u0111\u1ecba ch\u1ec9 ngu\u1ed3n.\n\u2022 Mu\u1ed1n th\u1ef1c hi\u1ec7n Extended Ping \u0111\u1ec3 t\u00f9y ch\u1ecdn \u0111\u1ecba ch\u1ec9 IP ngu\u1ed3n (Source Address), s\u1ed1 l\u01b0\u1ee3ng g\u00f3i tin, k\u00edch th\u01b0\u1edbc g\u00f3i... qu\u1ea3n tr\u1ecb vi\u00ean ch\u1ec9 c\u1ea7n g\u00f5 duy nh\u1ea5t ch\u1eef 'ping' \u1edf ch\u1ebf \u0111\u1ed9 Privileged EXEC mode (#) v\u00e0 nh\u1ea5n Enter. Router s\u1ebd t\u1ef1 \u0111\u1ed9ng hi\u1ec3n th\u1ecb t\u1eebng c\u00e2u h\u1ecfi \u0111\u1ec3 c\u1ea5u h\u00ecnh chi ti\u1ebft.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"Issue the ping command without specifying a destination IP address.\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Ping ch\u1ecdn \u0111\u1ecba ch\u1ec9 ngu\u1ed3n = g\u00f5 l\u1ec7nh ping tr\u1ea7n (kh\u00f4ng k\u00e8m IP \u0111\u00edch)."
         },
         {
                 "id": "NWC_015",
@@ -1386,7 +1379,7 @@ descSet.addAll(bookSet);`)">
                         1
                 ],
                 "correct_index": 1,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 14 - Transport Layer Protocols): Câu hỏi tập trung vào TCP / UDP & Ports. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 \u0110\u1ed9 tr\u1ec5 (Latency) l\u00e0 kho\u1ea3ng th\u1eddi gian c\u1ea7n thi\u1ebft \u0111\u1ec3 m\u1ed9t g\u00f3i tin di chuy\u1ec3n t\u1eeb m\u00e1y ngu\u1ed3n t\u1edbi m\u00e1y \u0111\u00edch v\u00e0 nh\u1eadn ph\u1ea3n h\u1ed3i (Round-Trip Time - RTT).\n\u2022 Khi m\u1ea1ng g\u1eb7p s\u1ef1 c\u1ed1 ngh\u1ebdn ho\u1eb7c qu\u00e1 t\u1ea3i h\u00e0ng \u0111\u1ee3i (queue), th\u1eddi gian tr\u1ec5 c\u1ee7a l\u1ec7nh ping (ping response times) gi\u1eefa 2 host s\u1ebd t\u0103ng v\u1ecdt b\u1ea5t th\u01b0\u1eddng.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"an increase in host-to-host ping response times\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Latency issue = increase in ping response times."
         },
         {
                 "id": "NWC_016",
@@ -1405,7 +1398,7 @@ descSet.addAll(bookSet);`)">
                         1
                 ],
                 "correct_index": 1,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 16 - Network Security & Device Hardening): Câu hỏi tập trung vào Device Security & Hardening. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Telnet g\u1eedi m\u1ecdi k\u00fd t\u1ef1 ng\u01b0\u1eddi d\u00f9ng g\u00f5 (bao g\u1ed3m c\u1ea3 m\u1eadt kh\u1ea9u enable v\u00e0 m\u1eadt kh\u1ea9u \u0111\u0103ng nh\u1eadp) d\u01b0\u1edbi d\u1ea1ng v\u0103n b\u1ea3n thu\u1ea7n (plaintext) qua c\u1ed5ng TCP 23.\n\u2022 SSH (TCP Port 22) s\u1eed d\u1ee5ng c\u01a1 ch\u1ebf b\u1eaft tay m\u00e3 h\u00f3a hi\u1ec7n \u0111\u1ea1i, m\u00e3 h\u00f3a to\u00e0n b\u1ed9 d\u1eef li\u1ec7u \u0111i\u1ec1u khi\u1ec3n v\u00e0 th\u00f4ng tin \u0111\u0103ng nh\u1eadp, ng\u0103n ch\u1eb7n tri\u1ec7t \u0111\u1ec3 h\u00e0nh vi nghe l\u00e9n (packet sniffing).\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"login information and data encryption\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: SSH h\u01a1n Telnet \u1edf ch\u1ed7: Data encryption (m\u00e3 h\u00f3a d\u1eef li\u1ec7u)."
         },
         {
                 "id": "NWC_017",
@@ -1424,7 +1417,7 @@ descSet.addAll(bookSet);`)">
                         2
                 ],
                 "correct_index": 2,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 1 - Network Fundamentals): Câu hỏi tập trung vào General Networking. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Worm (S\u00e2u m\u00e1y t\u00ednh) l\u00e0 m\u00e3 \u0111\u1ed9c nguy hi\u1ec3m nh\u1ea5t v\u00ec ch\u00fang t\u1ef1 \u0111\u1ed9ng qu\u00e9t m\u1ea1ng v\u00e0 khai th\u00e1c tr\u1ef1c ti\u1ebfp c\u00e1c l\u1ed7 h\u1ed5ng d\u1ecbch v\u1ee5 (vulnerabilities) trong h\u1ec7 \u0111i\u1ec1u h\u00e0nh \u0111\u1ec3 x\u00e2m nh\u1eadp m\u00e0 KH\u00d4NG C\u1ea6N ng\u01b0\u1eddi d\u00f9ng nh\u1ea5p chu\u1ed9t.\n\u2022 V\u00ec v\u1eady, bi\u1ec7n ph\u00e1p ph\u00f2ng ch\u1ed1ng hi\u1ec7u qu\u1ea3 v\u00e0 tri\u1ec7t \u0111\u1ec3 nh\u1ea5t l\u00e0 c\u1eadp nh\u1eadt \u0111\u1ecbnh k\u1ef3 c\u00e1c b\u1ea3n v\u00e1 b\u1ea3o m\u1eadt (security patches) t\u1eeb nh\u00e0 cung c\u1ea5p h\u1ec7 \u0111i\u1ec1u h\u00e0nh.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"Download security updates from the operating system vendor and patch all vulnerable systems.\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Ch\u1ed1ng Worm = Patch all vulnerable systems."
         },
         {
                 "id": "NWC_018",
@@ -1445,7 +1438,7 @@ descSet.addAll(bookSet);`)">
                         4
                 ],
                 "correct_index": 3,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 1 - Network Fundamentals): Câu hỏi tập trung vào General Networking. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 C\u00e1c \u1ee9ng d\u1ee5ng th\u1eddi gian th\u1ef1c (Real-time Applications) \u0111\u00f2i h\u1ecfi truy\u1ec1n t\u1ea3i lu\u1ed3ng d\u1eef li\u1ec7u li\u00ean t\u1ee5c kh\u00f4ng gi\u00e1n \u0111o\u1ea1n. Ch\u00fang c\u1ef1c k\u1ef3 nh\u1ea1y c\u1ea3m v\u1edbi \u0111\u1ed9 tr\u1ec5 (delay) v\u00e0 bi\u1ebfn thi\u00ean \u0111\u1ed9 tr\u1ec5 (jitter).\n\u2022 Hai lo\u1ea1i h\u00ecnh d\u1ecbch v\u1ee5 m\u1ea1ng th\u1eddi gian th\u1ef1c \u0111i\u1ec3n h\u00ecnh c\u1ea7n \u0111\u01b0\u1ee3c \u01b0u ti\u00ean h\u00e0ng \u0111\u1ea7u qua QoS (Quality of Service) l\u00e0 Tho\u1ea1i (Voice/VoIP) v\u00e0 H\u00ecnh \u1ea3nh tr\u1ef1c ti\u1ebfp (Video).\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"Voice\" v\u00e0 \"Video\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: \u1ee8ng d\u1ee5ng Real-time c\u1ea7n \u01b0u ti\u00ean QoS = Voice & Video."
         },
         {
                 "id": "NWC_019",
@@ -1464,7 +1457,7 @@ descSet.addAll(bookSet);`)">
                         0
                 ],
                 "correct_index": 0,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 8 - Network Layer & Routing): Câu hỏi tập trung vào Routing Operations. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Stateful Packet Inspection (SPI) l\u00e0 c\u00f4ng ngh\u1ec7 t\u01b0\u1eddng l\u1eeda theo d\u00f5i tr\u1ea1ng th\u00e1i c\u1ee7a c\u00e1c phi\u00ean k\u1ebft n\u1ed1i (state table).\n\u2022 Khi m\u1ed9t m\u00e1y t\u00ednh trong m\u1ea1ng n\u1ed9i b\u1ed9 g\u1eedi y\u00eau c\u1ea7u ra ngo\u00e0i Internet, t\u01b0\u1eddng l\u1eeda ghi nh\u1eadn phi\u00ean n\u00e0y. Khi c\u00f3 g\u00f3i tin t\u1eeb Internet g\u1eedi v\u00e0o, t\u01b0\u1eddng l\u1eeda \u0111\u1ed1i chi\u1ebfu xem \u0111\u00f3 c\u00f3 \u0111\u00fang l\u00e0 g\u00f3i tin ph\u1ea3n h\u1ed3i h\u1ee3p l\u1ec7 cho k\u1ebft n\u1ed1i n\u1ed9i b\u1ed9 \u0111\u00e3 m\u1edf hay kh\u00f4ng; n\u1ebfu kh\u00f4ng, t\u01b0\u1eddng l\u1eeda s\u1ebd l\u1eadp t\u1ee9c ch\u1eb7n l\u1ea1i.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"Stateful packet inspection\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: G\u00f3i tin v\u00e0o l\u00e0 ph\u1ea3n h\u1ed3i h\u1ee3p l\u1ec7 c\u1ee7a g\u00f3i \u0111i ra = Stateful packet inspection."
         },
         {
                 "id": "NWC_020",
@@ -1483,7 +1476,7 @@ descSet.addAll(bookSet);`)">
                         2
                 ],
                 "correct_index": 2,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 13 - ICMP & Network Diagnostics): Câu hỏi tập trung vào ICMP & Troubleshooting. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Trong Cisco IOS ping:\n  - D\u1ea5u '!' = Nh\u1eadn \u0111\u01b0\u1ee3c ICMP Echo Reply (Th\u00e0nh c\u00f4ng).\n  - D\u1ea5u '.' = Network server timed out (Timeout, m\u1ea5t g\u00f3i).\n  - D\u1ea5u 'U' = Nh\u1eadn ICMP Destination Unreachable t\u1eeb m\u1ed9t router tr\u00ean \u0111\u01b0\u1eddng truy\u1ec1n v\u00ec router \u0111\u00f3 kh\u00f4ng c\u00f3 route t\u1edbi IP \u0111\u00edch.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"'U' may indicate that a router along the path did not contain a route to the destination address and that the ping was unsuccessful.\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: K\u00fd hi\u1ec7u 'U' = Unreachable (router thi\u1ebfu route)."
         },
         {
                 "id": "NWC_021",
@@ -1521,7 +1514,7 @@ descSet.addAll(bookSet);`)">
                         0
                 ],
                 "correct_index": 0,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 7 - Ethernet Switching & Data Link): Câu hỏi tập trung vào Ethernet & Data Link Layer. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 M\u1eb7c \u0111\u1ecbnh tr\u00ean thi\u1ebft b\u1ecb Cisco IOS, c\u00e1c th\u00f4ng \u0111i\u1ec7p th\u00f4ng b\u00e1o nh\u1eadt k\u00fd (Syslog) v\u00e0 debug ch\u1ec9 \u0111\u01b0\u1ee3c \u0111\u1ea9y ra c\u1ed5ng v\u1eadt l\u00fd Console (line console 0).\n\u2022 Khi k\u1ef9 thu\u1eadt vi\u00ean truy c\u1eadp t\u1eeb xa qua \u0111\u01b0\u1eddng m\u1ea1ng VTY (Telnet ho\u1eb7c SSH), m\u00e0n h\u00ecnh s\u1ebd ho\u00e0n to\u00e0n kh\u00f4ng nh\u1eadn \u0111\u01b0\u1ee3c log. \u0110\u1ec3 k\u00edch ho\u1ea1t t\u00ednh n\u0103ng hi\u1ec3n th\u1ecb log tr\u00ean phi\u00ean Telnet/SSH hi\u1ec7n t\u1ea1i, b\u1eaft bu\u1ed9c ph\u1ea3i d\u00f9ng l\u1ec7nh 'terminal monitor'.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"terminal monitor\"\n\n\u274c PH\u00c2N T\u00cdCH B\u1eaaY:\n\u2022 logging synchronous: Gi\u1eef cho d\u00f2ng g\u00f5 l\u1ec7nh kh\u00f4ng b\u1ecb ng\u1eaft qu\u00e3ng khi c\u00f3 log chen ngang.\n\u2022 debug all: B\u1eadt to\u00e0n b\u1ed9 ch\u1ebf \u0111\u1ed9 debug (g\u00e2y s\u1eadp CPU switch/router).\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Cho ph\u00e9p log hi\u1ec3n th\u1ecb tr\u00ean Telnet/SSH = terminal monitor."
         },
         {
                 "id": "NWC_023",
@@ -1540,7 +1533,7 @@ descSet.addAll(bookSet);`)">
                         0
                 ],
                 "correct_index": 0,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 13 - ICMP & Network Diagnostics): Câu hỏi tập trung vào ICMP & Troubleshooting. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Trong h\u1ec7 \u0111i\u1ec1u h\u00e0nh Windows, c\u00e1c ti\u1ec7n \u00edch m\u1ea1ng nh\u01b0 ping v\u00e0 tracert m\u1eb7c \u0111\u1ecbnh s\u1eed d\u1ee5ng IPv4.\n\u2022 Tham s\u1ed1 t\u00f9y ch\u1ecdn '-6' (vd: tracert -6 www.cisco.com) ch\u1ec9 th\u1ecb cho Windows c\u01b0\u1ee1ng ch\u1ebf s\u1eed d\u1ee5ng giao th\u1ee9c IPv6 (ICMPv6) \u0111\u1ec3 d\u00f2 \u0111\u01b0\u1eddng.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"It forces the trace to use IPv6.\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: tracert -6 = \u00e9p bu\u1ed9c d\u00f9ng IPv6."
         },
         {
                 "id": "NWC_024",
@@ -1559,7 +1552,7 @@ descSet.addAll(bookSet);`)">
                         3
                 ],
                 "correct_index": 3,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 8 - Network Layer & Routing): Câu hỏi tập trung vào Routing Operations. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Tr\u00ean Cisco Router, m\u1eb7c \u0111\u1ecbnh c\u00e1c th\u00f4ng \u0111i\u1ec7p g\u1ee1 l\u1ed7i (debug messages) v\u00e0 log h\u1ec7 th\u1ed1ng ch\u1ec9 xu\u1ea5t ra c\u1ed5ng v\u1eadt l\u00fd Console (line con 0).\n\u2022 Khi k\u1ef9 thu\u1eadt vi\u00ean k\u1ebft n\u1ed1i t\u1eeb xa qua c\u00e1c \u0111\u01b0\u1eddng VTY (Telnet/SSH), mu\u1ed1n nh\u00ecn th\u1ea5y c\u00e1c th\u00f4ng \u0111i\u1ec7p debug tr\u1ef1c ti\u1ebfp tr\u00ean m\u00e0n h\u00ecnh terminal c\u1ee7a m\u00ecnh th\u00ec b\u1eaft bu\u1ed9c ph\u1ea3i g\u00f5 l\u1ec7nh 'terminal monitor' \u1edf ch\u1ebf \u0111\u1ed9 Privileged EXEC mode.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"terminal monitor\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Hi\u1ec7n debug l\u00ean VTY (Telnet/SSH) = terminal monitor."
         },
         {
                 "id": "NWC_025",
@@ -1578,7 +1571,7 @@ descSet.addAll(bookSet);`)">
                         2
                 ],
                 "correct_index": 2,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 7 - Ethernet Switching & Data Link): Câu hỏi tập trung vào Ethernet & Data Link Layer. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 L\u1ec7nh 'show cdp neighbors' ch\u1ec9 hi\u1ec3n th\u1ecb b\u1ea3ng t\u00f3m t\u1eaft ng\u1eafn (Device ID, Local Interface, Holdtime, Capability, Platform, Port ID).\n\u2022 \u0110\u1ec3 xem \u0111\u1ea7y \u0111\u1ee7 \u0111\u1ecba ch\u1ec9 IP (Network layer addresses), Hostname chi ti\u1ebft v\u00e0 Phi\u00ean b\u1ea3n h\u1ec7 \u0111i\u1ec1u h\u00e0nh IOS c\u1ee7a thi\u1ebft b\u1ecb l\u00e1ng gi\u1ec1ng, qu\u1ea3n tr\u1ecb vi\u00ean b\u1eaft bu\u1ed9c ph\u1ea3i d\u00f9ng l\u1ec7nh 'show cdp neighbors detail'.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"show cdp neighbors detail\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Xem IP + IOS version c\u1ee7a l\u00e1ng gi\u1ec1ng Cisco = show cdp neighbors detail."
         },
         {
                 "id": "NWC_026",
@@ -1597,7 +1590,7 @@ descSet.addAll(bookSet);`)">
                         0
                 ],
                 "correct_index": 0,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 1 - Network Fundamentals): Câu hỏi tập trung vào General Networking. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Virus: L\u00e0 \u0111o\u1ea1n m\u00e3 \u0111\u1ed9c c\u1ea7n b\u00e1m v\u00e0o m\u1ed9t file ch\u1ee7 (.exe, .doc) v\u00e0 B\u1eaeT BU\u1ed8C c\u1ea7n h\u00e0nh \u0111\u1ed9ng c\u1ee7a con ng\u01b0\u1eddi (nh\u1ea5p \u0111\u00fap chu\u1ed9t m\u1edf file) th\u00ec m\u1edbi ph\u00e1t t\u00e1n \u0111\u01b0\u1ee3c.\n\u2022 Worm (S\u00e2u): L\u00e0 m\u1ed9t ch\u01b0\u01a1ng tr\u00ecnh \u0111\u1ed9c l\u1eadp ho\u00e0n ch\u1ec9nh, c\u00f3 kh\u1ea3 n\u0103ng t\u1ef1 \u0111\u1ed9ng qu\u00e9t m\u1ea1ng, khai th\u00e1c l\u1ed7 h\u1ed5ng v\u00e0 T\u1ef0 NH\u00c2N B\u1ea2N (self-replicate) t\u1eeb m\u00e1y n\u00e0y sang m\u00e1y kh\u00e1c qua k\u1ebft n\u1ed1i m\u1ea1ng m\u00e0 kh\u00f4ng c\u1ea7n b\u1ea5t k\u1ef3 s\u1ef1 t\u01b0\u01a1ng t\u00e1c n\u00e0o c\u1ee7a con ng\u01b0\u1eddi.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"Worms self-replicate but viruses do not.\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Kh\u00e1c bi\u1ec7t virus v\u00e0 worm: Worm t\u1ef1 nh\u00e2n b\u1ea3n (self-replicate)."
         },
         {
                 "id": "NWC_027",
@@ -1616,7 +1609,7 @@ descSet.addAll(bookSet);`)">
                         2
                 ],
                 "correct_index": 2,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 16 - Network Security & Device Hardening): Câu hỏi tập trung vào Device Security & Hardening. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Chi\u1ebfn l\u01b0\u1ee3c B\u1ea3o m\u1eadt Ph\u00e2n t\u1ea7ng (Layered Security Approach) hay Defense-in-Depth tri\u1ec3n khai nhi\u1ec1u l\u1edbp ph\u00f2ng th\u1ee7 kh\u00e1c nhau: T\u01b0\u1eddng l\u1eeda bi\u00ean (Perimeter firewall), T\u01b0\u1eddng l\u1eeda n\u1ed9i b\u1ed9 ph\u00e2n v\u00f9ng (Internal firewall), H\u1ec7 th\u1ed1ng ng\u0103n ch\u1eb7n x\u00e2m nh\u1eadp (IPS) v\u00e0 Antivirus tr\u00ean m\u00e1y tr\u1ea1m.\n\u2022 N\u1ebfu k\u1ebb t\u1ea5n c\u00f4ng v\u01b0\u1ee3t qua \u0111\u01b0\u1ee3c m\u1ed9t l\u1edbp, c\u00e1c l\u1edbp ti\u1ebfp theo v\u1eabn s\u1ebd ph\u00e1t hi\u1ec7n v\u00e0 ng\u0103n ch\u1eb7n.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"layered\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Nhi\u1ec1u l\u1edbp t\u01b0\u1eddng l\u1eeda + IPS = Layered approach."
         },
         {
                 "id": "NWC_028",
@@ -1635,7 +1628,7 @@ descSet.addAll(bookSet);`)">
                         3
                 ],
                 "correct_index": 3,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 16 - Network Security & Device Hardening): Câu hỏi tập trung vào Device Security & Hardening. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Telnet g\u1eedi m\u1ecdi th\u00f4ng tin \u1edf d\u1ea1ng b\u1ea3n r\u00f5 (plaintext) qua TCP port 23, d\u1ec5 d\u00e0ng b\u1ecb hacker b\u1eaft g\u00f3i \u0111\u1ecdc tr\u1ed9m m\u1eadt kh\u1ea9u.\n\u2022 SSH (Secure Shell) cung c\u1ea5p k\u00eanh li\u00ean l\u1ea1c \u0111\u01b0\u1ee3c m\u00e3 h\u00f3a an to\u00e0n (secure communications) qua TCP port 22.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"SSH provides secure communications to access hosts.\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: \u01afu \u0111i\u1ec3m SSH h\u01a1n Telnet = secure communications (m\u00e3 h\u00f3a)."
         },
         {
                 "id": "NWC_029",
@@ -1654,7 +1647,7 @@ descSet.addAll(bookSet);`)">
                         1
                 ],
                 "correct_index": 1,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 13 - ICMP & Network Diagnostics): Câu hỏi tập trung vào ICMP & Troubleshooting. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Ping b\u1eb1ng \u0111\u1ecba ch\u1ec9 IP th\u00e0nh c\u00f4ng ch\u1ee9ng minh to\u00e0n b\u1ed9 h\u1ea1 t\u1ea7ng ph\u1ea7n c\u1ee9ng, c\u00e1p m\u1ea1ng, router v\u00e0 t\u1ea7ng m\u1ea1ng IP \u0111\u1ec1u th\u00f4ng su\u1ed1t 100%.\n\u2022 Vi\u1ec7c kh\u00f4ng truy c\u1eadp \u0111\u01b0\u1ee3c website b\u1eb1ng t\u00ean mi\u1ec1n ch\u1ee9ng t\u1ecf h\u1ec7 th\u1ed1ng kh\u00f4ng th\u1ec3 ph\u00e2n gi\u1ea3i t\u00ean mi\u1ec1n (Domain Name) th\u00e0nh IP. L\u1ed7i n\u1eb1m \u1edf d\u1ecbch v\u1ee5 DNS. Ti\u1ec7n \u00edch d\u00f2ng l\u1ec7nh chuy\u00ean d\u1ee5ng \u0111\u1ec3 ki\u1ec3m tra v\u00e0 truy v\u1ea5n DNS l\u00e0 'nslookup'.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"nslookup\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Ping IP \u0111\u01b0\u1ee3c m\u00e0 kh\u00f4ng v\u00e0o \u0111\u01b0\u1ee3c b\u1eb1ng domain name = l\u1ed7i DNS -> d\u00f9ng nslookup."
         },
         {
                 "id": "NWC_030",
@@ -1673,7 +1666,7 @@ descSet.addAll(bookSet);`)">
                         3
                 ],
                 "correct_index": 3,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 13 - ICMP & Network Diagnostics): Câu hỏi tập trung vào ICMP & Troubleshooting. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 L\u1ec7nh 'tracert' (traceroute) s\u1eed d\u1ee5ng c\u00e1c g\u00f3i tin c\u00f3 TTL t\u0103ng d\u1ea7n t\u1eeb 1, 2, 3... \u0111\u1ec3 \u00e9p t\u1eebng router tr\u00ean \u0111\u01b0\u1eddng \u0111i ph\u1ea3n h\u1ed3i l\u1ea1i th\u00f4ng \u0111i\u1ec7p ICMP Time Exceeded (Type 11).\n\u2022 Nh\u1edd \u0111\u00f3, qu\u1ea3n tr\u1ecb vi\u00ean bi\u1ebft ch\u00ednh x\u00e1c g\u00f3i tin \u0111\u00e3 \u0111i qua nh\u1eefng router n\u00e0o, \u0111\u1ed9 tr\u1ec5 \u1edf t\u1eebng tr\u1ea1m l\u00e0 bao nhi\u00eau, v\u00e0 v\u1ecb tr\u00ed n\u00e0o b\u1ecb r\u1edbt g\u00f3i ho\u1eb7c qu\u00e1 t\u1ea3i (lost or delayed).\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"to identify where a packet was lost or delayed on a network\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: tracert = identify where packet was lost/delayed."
         },
         {
                 "id": "NWC_031",
@@ -1692,7 +1685,7 @@ descSet.addAll(bookSet);`)">
                         0
                 ],
                 "correct_index": 0,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 1 - Network Fundamentals): Câu hỏi tập trung vào General Networking. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Quy tr\u00ecnh x\u1eed l\u00fd s\u1ef1 c\u1ed1 chu\u1ea9n 6 b\u01b0\u1edbc (Cisco / CompTIA Troubleshooting Methodology):\n  1. Identify the problem (X\u00e1c \u0111\u1ecbnh s\u1ef1 c\u1ed1 qua h\u1ed9i tho\u1ea1i v\u1edbi ng\u01b0\u1eddi d\u00f9ng).\n  2. Establish a theory of probable causes (Thi\u1ebft l\u1eadp gi\u1ea3 thuy\u1ebft c\u00e1c nguy\u00ean nh\u00e2n kh\u1ea3 d\u0129).\n  3. Test the theory (Ki\u1ec3m tra ki\u1ec3m ch\u1ee9ng gi\u1ea3 thuy\u1ebft).\n  4. Establish a plan of action and implement (L\u1eadp k\u1ebf ho\u1ea1ch v\u00e0 th\u1ef1c hi\u1ec7n s\u1eeda ch\u1eefa).\n  5. Verify full system functionality (Ki\u1ec3m tra l\u1ea1i to\u00e0n b\u1ed9 h\u1ec7 th\u1ed1ng).\n  6. Document findings, actions, and outcomes (Ghi ch\u00e9p t\u00e0i li\u1ec7u).\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"Establish a theory of probable causes.\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Sau khi Identify the problem -> B\u01b0\u1edbc ti\u1ebfp theo: Establish a theory of probable causes."
         },
         {
                 "id": "NWC_032",
@@ -1713,7 +1706,7 @@ descSet.addAll(bookSet);`)">
                         2
                 ],
                 "correct_index": 0,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 1 - Network Fundamentals): Câu hỏi tập trung vào General Networking. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 D\u1ea3i \u0111\u1ecba ch\u1ec9 IP 169.254.0.0/16 \u0111\u01b0\u1ee3c g\u1ecdi l\u00e0 APIPA (Automatic Private IP Addressing).\n\u2022 Khi m\u1ed9t m\u00e1y t\u00ednh Windows \u0111\u01b0\u1ee3c c\u1ea5u h\u00ecnh nh\u1eadn IP t\u1ef1 \u0111\u1ed9ng (DHCP Client), n\u00f3 s\u1ebd ph\u00e1t qu\u1ea3ng b\u00e1 DHCP Discover. N\u1ebfu kh\u00f4ng c\u00f3 DHCP Server n\u00e0o ph\u1ea3n h\u1ed3i ho\u1eb7c \u0111\u01b0\u1eddng truy\u1ec1n b\u1ecb \u0111\u1ee9t, Windows s\u1ebd t\u1ef1 \u0111\u1ed9ng g\u00e1n cho card m\u1ea1ng m\u1ed9t IP ng\u1eabu nhi\u00ean trong d\u1ea3i 169.254.x.x n\u00e0y.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n1. \"The PC cannot contact a DHCP server.\"\n2. \"The PC is configured to obtain an IP address automatically.\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: 169.254.x.x = APIPA = M\u00e1y b\u1eadt DHCP nh\u01b0ng kh\u00f4ng li\u00ean l\u1ea1c \u0111\u01b0\u1ee3c DHCP Server."
         },
         {
                 "id": "NWC_033",
@@ -1732,7 +1725,7 @@ descSet.addAll(bookSet);`)">
                         3
                 ],
                 "correct_index": 3,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 8 - Network Layer & Routing): Câu hỏi tập trung vào Routing Operations. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 L\u1ec7nh 'show version' hi\u1ec3n th\u1ecb th\u00f4ng tin ph\u1ea7n c\u1ee9ng, phi\u00ean b\u1ea3n Cisco IOS \u0111ang ch\u1ea1y, th\u1eddi gian m\u00e1y ho\u1ea1t \u0111\u1ed9ng (uptime), v\u00e0 \u0111\u1eb7c bi\u1ec7t l\u00e0 gi\u00e1 tr\u1ecb thanh ghi c\u1ea5u h\u00ecnh (Configuration Register) \u1edf d\u00f2ng cu\u1ed1i c\u00f9ng (th\u01b0\u1eddng l\u00e0 0x2102 khi n\u1ea1p b\u00ecnh th\u01b0\u1eddng ho\u1eb7c 0x2142 khi ph\u00e1 m\u1eadt kh\u1ea9u).\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"the value of the configuration register\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: show version = ki\u1ec3m tra Configuration Register."
         },
         {
                 "id": "NWC_034",
@@ -1751,7 +1744,7 @@ descSet.addAll(bookSet);`)">
                         0
                 ],
                 "correct_index": 0,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 1 - Network Fundamentals): Câu hỏi tập trung vào General Networking. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 H\u1ec7 th\u1ed1ng Ng\u0103n Ch\u1eb7n X\u00e2m Nh\u1eadp (IPS - Intrusion Prevention System) \u0111\u01b0\u1ee3c l\u1eafp \u0111\u1eb7t tr\u1ef1c ti\u1ebfp tr\u00ean lu\u1ed3ng truy\u1ec1n t\u1ea3i d\u1eef li\u1ec7u (in-line mode).\n\u2022 Kh\u00e1c v\u1edbi IDS ch\u1ec9 th\u1ee5 \u0111\u1ed9ng c\u1ea3nh b\u00e1o, IPS c\u00f3 kh\u1ea3 n\u0103ng ph\u00e2n t\u00edch g\u00f3i tin v\u00e0 ch\u1ee7 \u0111\u1ed9ng ch\u1eb7n \u0111\u1ee9ng (block/drop) c\u00e1c cu\u1ed9c t\u1ea5n c\u00f4ng m\u1ea1ng ngay trong th\u1eddi gian th\u1ef1c (real-time).\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"detecting and blocking of attacks in real time\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: IPS (Prevention) = detecting and blocking in real time."
         },
         {
                 "id": "NWC_035",
@@ -1789,7 +1782,7 @@ descSet.addAll(bookSet);`)">
                         3
                 ],
                 "correct_index": 3,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 1 - Network Fundamentals): Câu hỏi tập trung vào General Networking. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 T\u1ea5n c\u00f4ng Do Th\u00e1m / Trinh S\u00e1t (Reconnaissance Attack) l\u00e0 b\u01b0\u1edbc \u0111\u1ea7u ti\u00ean c\u1ee7a m\u1ecdi hacker nh\u1eb1m thu th\u1eadp b\u1ea3n \u0111\u1ed3 m\u1ea1ng, qu\u00e9t c\u1ed5ng (port scan), ph\u00e1t hi\u1ec7n l\u1ed7 h\u1ed5ng d\u1ecbch v\u1ee5 (vulnerability scan) v\u00e0 th\u00f4ng tin m\u1ee5c ti\u00eau tr\u01b0\u1edbc khi th\u1ef1c hi\u1ec7n t\u1ea5n c\u00f4ng ph\u00e1 ho\u1ea1i th\u1ef1c t\u1ebf.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"Reconnaissance\" (Do th\u00e1m / Trinh s\u00e1t).\n\n\u274c PH\u00c2N T\u00cdCH B\u1eaaY:\n\u2022 DoS: \u0110\u00e1nh s\u1eadp t\u00e0i nguy\u00ean l\u00e0m t\u00ea li\u1ec7t h\u1ec7 th\u1ed1ng.\n\u2022 Man-in-the-middle: \u0110\u1ee9ng gi\u1eefa nghe l\u00e9n v\u00e0 s\u1eeda \u0111\u1ed5i d\u1eef li\u1ec7u.\n\u2022 Dictionary attack: Th\u1eed m\u1eadt kh\u1ea9u b\u1eb1ng t\u1eeb \u0111i\u1ec3n.\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: \"gather information to identify vulnerabilities\" = Reconnaissance."
         },
         {
                 "id": "NWC_037",
@@ -1808,7 +1801,7 @@ descSet.addAll(bookSet);`)">
                         0
                 ],
                 "correct_index": 0,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 8 - Network Layer & Routing): Câu hỏi tập trung vào Routing Operations. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 \u0110\u1ec3 b\u1eaft bu\u1ed9c c\u00e1c \u0111\u01b0\u1eddng k\u1ebft n\u1ed1i t\u1eeb xa VTY (Line VTY) ch\u1ec9 ch\u1ea5p nh\u1eadn k\u1ebft n\u1ed1i m\u00e3 h\u00f3a an to\u00e0n qua SSH v\u00e0 ch\u1eb7n ho\u00e0n to\u00e0n giao th\u1ee9c Telnet b\u1ea3n r\u00f5, qu\u1ea3n tr\u1ecb vi\u00ean ph\u1ea3i c\u1ea5u h\u00ecnh l\u1ec7nh 'transport input ssh'.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"transport input ssh\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Ho\u00e0n t\u1ea5t b\u1eadt SSH tr\u00ean line vty = transport input ssh."
         },
         {
                 "id": "NWC_038",
@@ -1827,7 +1820,7 @@ descSet.addAll(bookSet);`)">
                         3
                 ],
                 "correct_index": 3,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 8 - Network Layer & Routing): Câu hỏi tập trung vào Routing Operations. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Passphrase (c\u1ee5m t\u1eeb m\u1eadt kh\u1ea9u) l\u00e0 chu\u1ed7i k\u1ebft h\u1ee3p nhi\u1ec1u t\u1eeb c\u00f3 kho\u1ea3ng c\u00e1ch ho\u1eb7c k\u00fd t\u1ef1 \u0111\u1eb7c bi\u1ec7t, t\u1ea1o ra \u0111\u1ed9 d\u00e0i l\u1edbn gi\u00fap ch\u1ed1ng l\u1ea1i c\u00e1c cu\u1ed9c t\u1ea5n c\u00f4ng v\u00e9t c\u1ea1n (brute-force) ho\u1eb7c b\u1ea3ng c\u1ea7u v\u1ed3ng (rainbow tables).\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"It is strong because it uses a passphrase.\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: M\u1eadt kh\u1ea9u d\u1ea1ng c\u1ee5m t\u1eeb = strong because it uses a passphrase."
         },
         {
                 "id": "NWC_039",
@@ -1846,7 +1839,7 @@ descSet.addAll(bookSet);`)">
                         2
                 ],
                 "correct_index": 2,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 8 - Network Layer & Routing): Câu hỏi tập trung vào Routing Operations. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 M\u1eadt kh\u1ea9u m\u1ea1nh (Strong password) ph\u1ea3i c\u00f3 t\u1ed1i thi\u1ec3u 8-10 k\u00fd t\u1ef1 k\u1ebft h\u1ee3p ch\u1eef hoa, ch\u1eef th\u01b0\u1eddng, ch\u1eef s\u1ed1 v\u00e0 k\u00fd t\u1ef1 \u0111\u1eb7c bi\u1ec7t (!@#$%).\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"It is strong because it uses a minimum of 10 numbers, letters and special characters.\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: M\u1eadt kh\u1ea9u m\u1ea1nh = t\u1ed1i thi\u1ec3u 10 k\u00fd t\u1ef1 g\u1ed3m s\u1ed1, ch\u1eef v\u00e0 k\u00fd t\u1ef1 \u0111\u1eb7c bi\u1ec7t."
         },
         {
                 "id": "NWC_040",
@@ -1865,7 +1858,7 @@ descSet.addAll(bookSet);`)">
                         2
                 ],
                 "correct_index": 2,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 8 - Network Layer & Routing): Câu hỏi tập trung vào Routing Operations. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 M\u1eadt kh\u1ea9u c\u00f3 \u0111\u1ed9 ph\u1ee9c t\u1ea1p cao ch\u1ee9a c\u1ea3 s\u1ed1 v\u00e0 k\u00fd t\u1ef1 \u0111\u1eb7c bi\u1ec7t v\u1edbi \u0111\u1ed9 d\u00e0i l\u1edbn s\u1ebd c\u00f3 kh\u00f4ng gian entropy cao, c\u1ef1c k\u1ef3 kh\u00f3 b\u1ecb b\u1ebb kh\u00f3a.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"It is strong because it contains 10 numbers and special characters.\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Strong password = ch\u1ee9a s\u1ed1 v\u00e0 k\u00fd t\u1ef1 \u0111\u1eb7c bi\u1ec7t."
         },
         {
                 "id": "NWC_041",
@@ -1884,7 +1877,7 @@ descSet.addAll(bookSet);`)">
                         3
                 ],
                 "correct_index": 3,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 8 - Network Layer & Routing): Câu hỏi tập trung vào Routing Operations. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 M\u1eadt kh\u1ea9u ch\u1ee9a chu\u1ed7i k\u00fd t\u1ef1 ho\u1eb7c ch\u1eef s\u1ed1 li\u00ean ti\u1ebfp (nh\u01b0 123456, abcdef) l\u00e0 lo\u1ea1i m\u1eadt kh\u1ea9u c\u1ef1c k\u1ef3 y\u1ebfu (Weak password) v\u00ec n\u1eb1m ngay \u0111\u1ea7u danh s\u00e1ch trong m\u1ecdi t\u1eeb \u0111i\u1ec3n t\u1ea5n c\u00f4ng t\u1ef1 \u0111\u1ed9ng.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"It is weak because it uses a series of numbers or letters.\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: M\u1eadt kh\u1ea9u d\u00e3y s\u1ed1/ch\u1eef li\u00ean ti\u1ebfp = Weak password."
         },
         {
                 "id": "NWC_042",
@@ -1903,7 +1896,7 @@ descSet.addAll(bookSet);`)">
                         0
                 ],
                 "correct_index": 0,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 8 - Network Layer & Routing): Câu hỏi tập trung vào Routing Operations. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 M\u1eadt kh\u1ea9u m\u1eb7c \u0111\u1ecbnh c\u1ee7a nh\u00e0 s\u1ea3n xu\u1ea5t (nh\u01b0 'cisco', 'admin', 'password') l\u00e0 \u0111i\u1ec3m y\u1ebfu b\u1ea3o m\u1eadt ph\u1ed5 bi\u1ebfn nh\u1ea5t. K\u1ebb t\u1ea5n c\u00f4ng lu\u00f4n th\u1eed c\u00e1c m\u1eadt kh\u1ea9u n\u00e0y \u0111\u1ea7u ti\u00ean khi ph\u00e1t hi\u1ec7n thi\u1ebft b\u1ecb m\u1edbi.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"It is weak because it is often the default password on new devices.\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: M\u1eadt kh\u1ea9u m\u1eb7c \u0111\u1ecbnh = Weak password."
         },
         {
                 "id": "NWC_043",
@@ -1922,7 +1915,7 @@ descSet.addAll(bookSet);`)">
                         0
                 ],
                 "correct_index": 0,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 8 - Network Layer & Routing): Câu hỏi tập trung vào Routing Operations. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 M\u1eadt kh\u1ea9u s\u1eed d\u1ee5ng th\u00f4ng tin c\u00e1 nh\u00e2n d\u1ec5 t\u00ecm ki\u1ebfm (nh\u01b0 ng\u00e0y sinh, t\u00ean th\u00fa c\u01b0ng, t\u00ean tr\u01b0\u1eddng h\u1ecdc) r\u1ea5t d\u1ec5 b\u1ecb thu th\u1eadp qua k\u1ef9 ngh\u1ec7 x\u00e3 h\u1ed9i (Social Engineering) ho\u1eb7c m\u1ea1ng x\u00e3 h\u1ed9i.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"It is weak because it uses easily found personal information.\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: M\u1eadt kh\u1ea9u d\u00f9ng th\u00f4ng tin c\u00e1 nh\u00e2n = Weak password."
         },
         {
                 "id": "NWC_044",
@@ -1941,7 +1934,7 @@ descSet.addAll(bookSet);`)">
                         0
                 ],
                 "correct_index": 0,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 8 - Network Layer & Routing): Câu hỏi tập trung vào Routing Operations. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 C\u00e1c t\u1eeb ng\u1eef th\u00f4ng d\u1ee5ng trong t\u1eeb \u0111i\u1ec3n ho\u1eb7c m\u1eadt kh\u1ea9u ph\u1ed5 bi\u1ebfn (nh\u01b0 'welcome', 'qwerty') r\u1ea5t d\u1ec5 b\u1ecb b\u1ebb kh\u00f3a b\u1eb1ng k\u1ef9 thu\u1eadt Dictionary Attack.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"It is weak because it is a commonly used password.\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: M\u1eadt kh\u1ea9u th\u00f4ng d\u1ee5ng = Weak password."
         },
         {
                 "id": "NWC_045",
@@ -1960,7 +1953,7 @@ descSet.addAll(bookSet);`)">
                         1
                 ],
                 "correct_index": 1,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 8 - Network Layer & Routing): Câu hỏi tập trung vào Routing Operations. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 M\u1eadt kh\u1ea9u d\u1ef1a tr\u00ean th\u00f4ng tin c\u00e1 nh\u00e2n d\u1ec5 tra c\u1ee9u c\u00f4ng khai l\u00e0 m\u1eadt kh\u1ea9u y\u1ebfu.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"It is weak since it uses easily found personal information.\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Personal information = Weak password."
         },
         {
                 "id": "NWC_046",
@@ -1979,7 +1972,7 @@ descSet.addAll(bookSet);`)">
                         1
                 ],
                 "correct_index": 1,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 8 - Network Layer & Routing): Câu hỏi tập trung vào Routing Operations. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 M\u1eadt kh\u1ea9u s\u1eed d\u1ee5ng th\u00f4ng tin c\u00e1 nh\u00e2n d\u1ec5 t\u00ecm ki\u1ebfm lu\u00f4n b\u1ecb x\u1ebfp v\u00e0o lo\u1ea1i y\u1ebfu.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"It is weak because it uses easily found personal information.\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Personal information = Weak password."
         },
         {
                 "id": "NWC_047",
@@ -1998,7 +1991,7 @@ descSet.addAll(bookSet);`)">
                         3
                 ],
                 "correct_index": 3,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 8 - Network Layer & Routing): Câu hỏi tập trung vào Routing Operations. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 L\u1ec7nh 'show ip interface brief' l\u00e0 l\u1ec7nh ng\u1eafn g\u1ecdn v\u00e0 hi\u1ec7u qu\u1ea3 nh\u1ea5t tr\u00ean Cisco IOS \u0111\u1ec3 li\u1ec7t k\u00ea to\u00e0n b\u1ed9 c\u00e1c c\u1ed5ng m\u1ea1ng, \u0111\u1ecba ch\u1ec9 IPv4 t\u01b0\u01a1ng \u1ee9ng, ph\u01b0\u01a1ng th\u1ee9c g\u00e1n IP v\u00e0 tr\u1ea1ng th\u00e1i ho\u1ea1t \u0111\u1ed9ng \u1edf Layer 1 (Status: Up/Down) v\u00e0 Layer 2 (Protocol: Up/Down).\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"show ip interface brief\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Ki\u1ec3m tra nhanh IP c\u00e1c c\u1ed5ng tr\u00ean router = show ip interface brief."
         },
         {
                 "id": "NWC_048",
@@ -2017,7 +2010,7 @@ descSet.addAll(bookSet);`)">
                         3
                 ],
                 "correct_index": 3,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 7 - Ethernet Switching & Data Link): Câu hỏi tập trung vào Ethernet & Data Link Layer. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 L\u1ed7i kh\u00f4ng kh\u1edbp Duplex (Duplex Mismatch - m\u1ed9t \u0111\u1ea7u Full-Duplex, m\u1ed9t \u0111\u1ea7u Half-Duplex) g\u00e2y ra ngh\u1ebdn m\u1ea1ng nghi\u00eam tr\u1ecdng do va ch\u1ea1m mu\u1ed9n (Late Collisions).\n\u2022 \u0110\u1ec3 ki\u1ec3m tra chi ti\u1ebft tr\u1ea1ng th\u00e1i Duplex (Full/Half), t\u1ed1c \u0111\u1ed9 Speed (10/100/1000 Mbps) v\u00e0 b\u1ed9 \u0111\u1ebfm l\u1ed7i c\u1ed5ng, l\u1ec7nh b\u1eaft bu\u1ed9c ph\u1ea3i d\u00f9ng l\u00e0 'show interfaces'.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"show interfaces\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Ki\u1ec3m tra l\u1ed7i Duplex v\u00e0 va ch\u1ea1m c\u1ed5ng = show interfaces."
         },
         {
                 "id": "NWC_049",
@@ -2036,7 +2029,7 @@ descSet.addAll(bookSet);`)">
                         3
                 ],
                 "correct_index": 3,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 1 - Network Fundamentals): Câu hỏi tập trung vào General Networking. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Tr\u00ean h\u1ec7 \u0111i\u1ec1u h\u00e0nh Windows, l\u1ec7nh d\u00f2ng l\u1ec7nh chu\u1ea9n nh\u1ea5t \u0111\u1ec3 hi\u1ec3n th\u1ecb \u0111\u1ecba ch\u1ec9 IP, Subnet Mask v\u00e0 Default Gateway c\u1ee7a m\u00e1y t\u00ednh l\u00e0 'ipconfig'.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"ipconfig\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Xem IP m\u00e1y t\u00ednh Windows = ipconfig."
         },
         {
                 "id": "NWC_050",
@@ -2055,7 +2048,7 @@ descSet.addAll(bookSet);`)">
                         2
                 ],
                 "correct_index": 2,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 8 - Network Layer & Routing): Câu hỏi tập trung vào Routing Operations. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 C\u1ea5u h\u00ecnh \u0111ang ch\u1ea1y c\u1ee7a router l\u01b0u trong RAM (running-config) s\u1ebd bi\u1ebfn m\u1ea5t khi kh\u1edfi \u0111\u1ed9ng l\u1ea1i.\n\u2022 Mu\u1ed1n l\u01b0u v\u0129nh vi\u1ec5n c\u1ea5u h\u00ecnh v\u00e0o b\u1ed9 nh\u1edb b\u1ea5t bi\u1ebfn NVRAM (startup-config), l\u1ec7nh chu\u1ea9n tr\u00ean Cisco IOS l\u00e0 'copy running-config startup-config' (vi\u1ebft t\u1eaft 'copy run start').\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"copy running-config startup-config\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: L\u01b0u c\u1ea5u h\u00ecnh v\u00e0o NVRAM = copy running-config startup-config."
         },
         {
                 "id": "NWC_051",
@@ -2074,7 +2067,7 @@ descSet.addAll(bookSet);`)">
                         3
                 ],
                 "correct_index": 3,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 14 - Transport Layer Protocols): Câu hỏi tập trung vào TCP / UDP & Ports. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Tr\u00ean h\u1ec7 \u0111i\u1ec1u h\u00e0nh macOS (Apple Mac), giao di\u1ec7n m\u1ea1ng kh\u00f4ng d\u00e2y Wi-Fi th\u01b0\u1eddng mang \u0111\u1ecbnh danh l\u00e0 'en0' (ho\u1eb7c 'en1').\n\u2022 L\u1ec7nh d\u00f2ng l\u1ec7nh chu\u1ea9n trong macOS Terminal \u0111\u1ec3 l\u1ea5y nhanh \u0111\u1ecba ch\u1ec9 IP c\u1ee7a giao di\u1ec7n m\u1ea1ng en0 l\u00e0 'ipconfig getifaddr en0'.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"ipconfig getifaddr en0\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: L\u1ea5y IP wifi tr\u00ean m\u00e1y Mac = ipconfig getifaddr en0."
         },
         {
                 "id": "NWC_052",
@@ -2093,7 +2086,7 @@ descSet.addAll(bookSet);`)">
                         1
                 ],
                 "correct_index": 1,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 11 - IP Addressing & Subnetting): Câu hỏi tập trung vào IPv4 & IPv6 Addressing. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 \u0110\u1ec3 ki\u1ec3m tra t\u1ea5t c\u1ea3 c\u00e1c \u0111\u1ecba ch\u1ec9 IPv6 (c\u1ea3 Global Unicast 2001:: v\u00e0 Link-Local fe80::) \u0111\u00e3 c\u1ea5u h\u00ecnh tr\u00ean c\u00e1c c\u1ed5ng c\u1ee7a router Cisco, l\u1ec7nh chu\u1ea9n l\u00e0 'show ipv6 interface' (ho\u1eb7c 'show ipv6 interface brief').\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"show ipv6 interface\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Ki\u1ec3m tra \u0111\u1ecba ch\u1ec9 IPv6 c\u00e1c c\u1ed5ng = show ipv6 interface."
         },
         {
                 "id": "NWC_053",
@@ -2112,7 +2105,7 @@ descSet.addAll(bookSet);`)">
                         1
                 ],
                 "correct_index": 1,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 8 - Network Layer & Routing): Câu hỏi tập trung vào Routing Operations. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Khi m\u1ed9t m\u00e1y t\u00ednh Windows kh\u00f4ng th\u1ec3 k\u1ebft n\u1ed1i t\u1edbi c\u00e1c m\u1ea1ng b\u00ean ngo\u00e0i, b\u01b0\u1edbc \u0111\u1ea7u ti\u00ean l\u00e0 ki\u1ec3m tra xem m\u00e1y \u0111\u00e3 \u0111\u01b0\u1ee3c c\u1ea5u h\u00ecnh Default Gateway ch\u00ednh x\u00e1c hay ch\u01b0a. Ti\u1ec7n \u00edch d\u00f2ng l\u1ec7nh 'ipconfig' (ho\u1eb7c 'ipconfig /all') hi\u1ec3n th\u1ecb ch\u00ednh x\u00e1c \u0111\u1ecba ch\u1ec9 Default Gateway hi\u1ec7n t\u1ea1i.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"ipconfig\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Ki\u1ec3m tra Default Gateway tr\u00ean PC = ipconfig."
         },
         {
                 "id": "NWC_054",
@@ -2131,7 +2124,7 @@ descSet.addAll(bookSet);`)">
                         3
                 ],
                 "correct_index": 3,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 11 - IP Addressing & Subnetting): Câu hỏi tập trung vào IPv4 & IPv6 Addressing. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 M\u1eb7c \u0111\u1ecbnh tr\u00ean Cisco Router, t\u00ednh n\u0103ng \u0111\u1ecbnh tuy\u1ebfn IPv6 b\u1ecb V\u00d4 HI\u1ec6U H\u00d3A. Mu\u1ed1n router chuy\u1ec3n ti\u1ebfp g\u00f3i tin IPv6 gi\u1eefa c\u00e1c m\u1ea1ng, b\u1eaft bu\u1ed9c ph\u1ea3i c\u00f3 l\u1ec7nh to\u00e0n c\u1ee5c 'ipv6 unicast-routing'.\n\u2022 L\u1ec7nh 'show running-config' cho ph\u00e9p ki\u1ec3m tra xem d\u00f2ng l\u1ec7nh n\u00e0y \u0111\u00e3 c\u00f3 trong file c\u1ea5u h\u00ecnh hay ch\u01b0a.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"show running-config\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Ki\u1ec3m tra \u0111\u00e3 b\u1eadt ipv6 unicast-routing ch\u01b0a = show running-config."
         },
         {
                 "id": "NWC_055",
@@ -2150,7 +2143,7 @@ descSet.addAll(bookSet);`)">
                         1
                 ],
                 "correct_index": 1,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 1 - Network Fundamentals): Câu hỏi tập trung vào General Networking. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 \u0110\u1ec3 tra c\u1ee9u \u0111\u1ecba ch\u1ec9 IP c\u1ee7a m\u1ed9t website d\u1ef1a tr\u00ean t\u00ean mi\u1ec1n c\u1ee7a n\u00f3, c\u00f4ng c\u1ee5 d\u00f2ng l\u1ec7nh chuy\u00ean d\u1ee5ng \u0111\u1ec3 truy v\u1ea5n tr\u1ef1c ti\u1ebfp h\u1ec7 th\u1ed1ng m\u00e1y ch\u1ee7 DNS l\u00e0 'nslookup'.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"nslookup\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Tra c\u1ee9u IP c\u1ee7a m\u1ed9t website = nslookup."
         },
         {
                 "id": "NWC_056",
@@ -2169,7 +2162,7 @@ descSet.addAll(bookSet);`)">
                         1
                 ],
                 "correct_index": 1,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 8 - Network Layer & Routing): Câu hỏi tập trung vào Routing Operations. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 B\u00ecnh th\u01b0\u1eddng khi router ping, n\u00f3 s\u1ebd l\u1ea5y IP c\u1ee7a c\u1ed5ng ra (exit interface) l\u00e0m \u0111\u1ecba ch\u1ec9 ngu\u1ed3n.\n\u2022 \u0110\u1ec3 ki\u1ec3m tra xem c\u1ed5ng m\u1ea1ng LAN m\u00e0 host H3 \u0111ang s\u1eed d\u1ee5ng c\u00f3 k\u1ebft n\u1ed1i th\u00f4ng su\u1ed1t t\u1edbi H1 hay kh\u00f4ng, k\u1ef9 thu\u1eadt vi\u00ean d\u00f9ng l\u1ec7nh 'extended ping' \u0111\u1ec3 ch\u1ec9 \u0111\u1ecbnh ch\u00ednh x\u00e1c Source Interface l\u00e0 c\u1ed5ng LAN c\u1ee7a H3.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"an extended ping\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Ch\u1ecdn interface ngu\u1ed3n \u0111\u1ec3 ping = extended ping."
         },
         {
                 "id": "NWC_057",
@@ -2189,7 +2182,7 @@ descSet.addAll(bookSet);`)">
                         2
                 ],
                 "correct_index": 2,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 13 - ICMP & Network Diagnostics): Câu hỏi tập trung vào ICMP & Troubleshooting. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Th\u1eddi gian Round-Trip Time (RTT) b\u00ecnh th\u01b0\u1eddng trong h\u1ed3 s\u01a1 m\u1ea1ng (baseline) l\u00e0 36/97/132 ms. Khi \u0111o l\u1ea1i, RTT t\u0103ng v\u1ecdt l\u00ean 1458/2390/6066 ms (t\u0103ng g\u1ea5p h\u00e0ng ch\u1ee5c l\u1ea7n).\n\u2022 \u0110i\u1ec1u n\u00e0y ph\u1ea3n \u00e1nh r\u00f5 r\u00e0ng hi\u1ec7n t\u01b0\u1ee3ng tr\u1ec5 m\u1ea1ng nghi\u00eam tr\u1ecdng (time delay / bufferbloat) gi\u1eefa hai m\u1ea1ng.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"Something is causing a time delay between the networks.\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: RTT t\u0103ng v\u1ecdt h\u00e0ng ng\u00e0n ms = Something is causing a time delay."
         },
         {
                 "id": "NWC_058",
@@ -2208,7 +2201,7 @@ descSet.addAll(bookSet);`)">
                         1
                 ],
                 "correct_index": 1,
-                "explanation": "Physical topology diagram thể hiện vị trí địa lý vật lý của thiết bị, giá đỡ (rack), và đường đi của dây cáp mạng."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Trong t\u00e0i li\u1ec7u thi\u1ebft k\u1ebf m\u1ea1ng Cisco:\n  - S\u01a1 \u0111\u1ed3 v\u1eadt l\u00fd (Physical Topology Diagram): Th\u1ec3 hi\u1ec7n v\u1ecb tr\u00ed \u0111\u1eb7t thi\u1ebft b\u1ecb trong ph\u00f2ng m\u00e1y, v\u1ecb tr\u00ed t\u1ee7 rack, s\u1ed1 hi\u1ec7u c\u1ed5ng c\u1eafm v\u00e0 l\u1ed9 tr\u00ecnh \u0111i d\u00e2y c\u00e1p m\u1ea1ng th\u1ef1c t\u1ebf.\n  - S\u01a1 \u0111\u1ed3 logic (Logical Topology Diagram): Th\u1ec3 hi\u1ec7n \u0111\u1ecba ch\u1ec9 IP, t\u00ean m\u1ea1ng subnet v\u00e0 c\u00e1c giao th\u1ee9c \u0111\u1ecbnh tuy\u1ebfn.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"Physical topology diagram\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: V\u1ecb tr\u00ed v\u1eadt l\u00fd, c\u1ed5ng v\u00e0 \u0111\u01b0\u1eddng \u0111i c\u00e1p = Physical topology diagram."
         },
         {
                 "id": "NWC_059",
@@ -13381,7 +13374,7 @@ descSet.addAll(bookSet);`)">
                         3
                 ],
                 "correct_index": 1,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN: RAM (Random Access Memory) là bộ nhớ khả biến (volatile), toàn bộ dữ liệu bị mất khi ngắt nguồn điện (power cycle). RAM lưu trữ Running Configuration (cấu hình đang chạy), bảng định tuyến Routing Table, bảng ARP và hàng đợi gói tin (packet buffer)."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 B\u1ed9 nh\u1edb RAM (Random Access Memory) tr\u00ean thi\u1ebft b\u1ecb Cisco l\u00e0 b\u1ed9 nh\u1edb kh\u1ea3 bi\u1ebfn (volatile):\n  1. D\u1eef li\u1ec7u s\u1ebd m\u1ea5t s\u1ea1ch khi ng\u1eaft ngu\u1ed3n \u0111i\u1ec7n ho\u1eb7c kh\u1edfi \u0111\u1ed9ng l\u1ea1i (lost during a power cycle).\n  2. L\u01b0u tr\u1eef c\u1ea5u h\u00ecnh \u0111ang ho\u1ea1t \u0111\u1ed9ng (running-config), b\u1ea3ng \u0111\u1ecbnh tuy\u1ebfn (routing table), b\u1ea3ng ARP cache v\u00e0 h\u00e0ng \u0111\u1ee3i g\u00f3i tin (packet buffer).\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n1. \"The contents of RAM are lost during a power cycle.\"\n2. \"The configuration that is actively running on the device is stored in RAM.\"\n\n\u274c PH\u00c2N T\u00cdCH B\u1eaaY:\n\u2022 \"RAM provides nonvolatile storage\": Sai, NVRAM (Non-Volatile RAM) m\u1edbi l\u00e0 b\u1ed9 nh\u1edb l\u01b0u startup-config v\u0129nh vi\u1ec5n.\n\u2022 \"RAM stores multiple versions of IOS\": Sai, Flash Memory m\u1edbi l\u01b0u h\u1ec7 \u0111i\u1ec1u h\u00e0nh Cisco IOS.\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: RAM = M\u1ea5t khi ng\u1eaft \u0111i\u1ec7n (volatile) + Ch\u1ee9a running-config."
         },
         {
                 "id": "NWC_640",
@@ -13400,7 +13393,7 @@ descSet.addAll(bookSet);`)">
                         0
                 ],
                 "correct_index": 0,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN: CSMA/CD (Carrier Sense Multiple Access with Collision Detection) là phương thức kiểm soát truy nhập đường truyền (access method / media access control) thuộc tầng Data Link cho mạng Ethernet bán song công (half-duplex)."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 CSMA/CD (Carrier Sense Multiple Access with Collision Detection) l\u00e0 ph\u01b0\u01a1ng th\u1ee9c truy c\u1eadp m\u00f4i tr\u01b0\u1eddng truy\u1ec1n d\u1eabn (Access Method) \u0111\u01b0\u1ee3c d\u00f9ng tr\u00ean m\u1ea1ng Ethernet Half-Duplex c\u1ed5 \u0111i\u1ec3n \u0111\u1ec3 c\u00e1c tr\u1ea1m l\u1eafng nghe \u0111\u01b0\u1eddng truy\u1ec1n tr\u01b0\u1edbc khi ph\u00e1t v\u00e0 ph\u00e1t hi\u1ec7n va ch\u1ea1m d\u1eef li\u1ec7u.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"access method\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: CSMA/CD = access method (ph\u01b0\u01a1ng th\u1ee9c truy c\u1eadp \u0111\u01b0\u1eddng truy\u1ec1n)."
         },
         {
                 "id": "NWC_641",
@@ -13421,7 +13414,7 @@ descSet.addAll(bookSet);`)">
                         3
                 ],
                 "correct_index": 0,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN: Hai biện pháp an ninh tối thiểu (minimum security requirements) cho mạng văn phòng nhỏ (SOHO) gồm: 1. Triển khai tường lửa (firewall) để lọc lưu lượng từ Internet, 2. Cài đặt phần mềm diệt virus (antivirus software) trên các máy trạm để ngăn ngừa mã độc."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 M\u1ed9t m\u1ea1ng v\u0103n ph\u00f2ng nh\u1ecf (Small Office / SOHO) y\u00eau c\u1ea7u t\u1ed1i thi\u1ec3u 2 l\u1edbp b\u1ea3o v\u1ec7 c\u01a1 b\u1ea3n:\n  1. T\u01b0\u1eddng l\u1eeda (Firewall): Ng\u0103n ch\u1eb7n c\u00e1c k\u1ebft n\u1ed1i \u0111\u1ed9c h\u1ea1i tr\u00e1i ph\u00e9p t\u1eeb Internet.\n  2. Ph\u1ea7n m\u1ec1m di\u1ec7t virus (Antivirus software): C\u00e0i \u0111\u1eb7t tr\u00ean c\u00e1c thi\u1ebft b\u1ecb \u0111\u1ea7u cu\u1ed1i \u0111\u1ec3 di\u1ec7t m\u00e3 \u0111\u1ed9c.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"implementing a firewall\" v\u00e0 \"installing antivirus software\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: B\u1ea3o m\u1eadt t\u1ed1i thi\u1ec3u cho v\u0103n ph\u00f2ng nh\u1ecf = Firewall + Antivirus."
         },
         {
                 "id": "NWC_642",
@@ -13440,7 +13433,7 @@ descSet.addAll(bookSet);`)">
                         1
                 ],
                 "correct_index": 1,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN: Nhiễu xuyên kênh (crosstalk) là hiện tượng méo tín hiệu truyền dẫn do tác động từ trường cảm ứng từ các cặp dây dẫn đặt cạnh nhau (signals carried in adjacent wires). Kỹ thuật xoắn đôi (twisted-pair) và triệt tiêu (cancellation) được dùng để giảm thiểu hiện tượng này."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Crosstalk (Nhi\u1ec5u xuy\u00ean \u00e2m / Nhi\u1ec5u xuy\u00ean k\u00eanh) l\u00e0 hi\u1ec7n t\u01b0\u1ee3ng t\u1eeb tr\u01b0\u1eddng ph\u00e1t ra t\u1eeb t\u00edn hi\u1ec7u truy\u1ec1n trong m\u1ed9t s\u1ee3i d\u00e2y g\u00e2y c\u1ea3m \u1ee9ng v\u00e0 l\u00e0m m\u00e9o m\u00f3 (distortion) t\u00edn hi\u1ec7u tr\u00ean s\u1ee3i d\u00e2y l\u00e2n c\u1eadn ch\u1ea1y song song trong c\u00f9ng b\u00f3 c\u00e1p.\n\u2022 K\u1ef9 thu\u1eadt xo\u1eafn \u0111\u00f4i (twisted pairs) trong c\u00e1p UTP \u0111\u01b0\u1ee3c ph\u00e1t minh ch\u00ednh l\u00e0 \u0111\u1ec3 tri\u1ec7t ti\u00eau hi\u1ec7n t\u01b0\u1ee3ng crosstalk n\u00e0y.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"the distortion of the transmitted messages from signals carried in adjacent wires\"\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Crosstalk = signals carried in adjacent wires (nhi\u1ec5u t\u1eeb d\u00e2y l\u00e2n c\u1eadn)."
         }
 ],
       osg202: [
