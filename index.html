@@ -31039,8 +31039,12 @@ descSet.addAll(bookSet);`)">
 
       const q = feActiveBank[feQIdx];
       const qKey = feSubject + "_" + (q.__origIdx !== undefined ? q.__origIdx : feQIdx);
-      const origText = (q.__origIdx !== undefined) ? ` [Gốc: Câu ${q.__origIdx + 1}]` : "";
-      document.getElementById("feQNumBadge").textContent = `Câu ${feQIdx + 1} / ${feActiveBank.length}${origText}`;
+      const origNum = (q.__origIdx !== undefined) ? (q.__origIdx + 1) : (feQIdx + 1);
+      if (q.__origIdx !== undefined) {
+        document.getElementById("feQNumBadge").textContent = `CÂU ${origNum} [Làm lại sai: ${feQIdx + 1}/${feActiveBank.length}]`;
+      } else {
+        document.getElementById("feQNumBadge").textContent = `Câu ${origNum} / ${feActiveBank.length}`;
+      }
       
       const topicEl = document.getElementById("feTopicBadge");
       if (topicEl) {
@@ -31111,7 +31115,8 @@ descSet.addAll(bookSet);`)">
 
         const cell = document.createElement("button");
         cell.className = "fe-cell";
-        cell.textContent = String(idx + 1);
+        const origNum = (q.__origIdx !== undefined) ? (q.__origIdx + 1) : (idx + 1);
+        cell.textContent = String(origNum);
 
         if (idx === feQIdx) cell.classList.add("current");
         if (isFlag) cell.classList.add("flagged");
