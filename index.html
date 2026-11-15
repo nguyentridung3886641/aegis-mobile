@@ -30944,27 +30944,50 @@ descSet.addAll(bookSet);`)">
       }
     }
 
-    function redoFeWrong() {
+        function redoFeWrong() {
+      // Find all wrong questions
+      const fullBank = BUILTIN_BANKS[feSubject] || feActiveBank;
       const wrongList = [];
-      feActiveBank.forEach((q, idx) => {
+      const wrongKeysToClear = [];
+
+      fullBank.forEach((q, idx) => {
         const key = feSubject + "_" + idx;
         const sel = feAnswers[key];
         const isCorr = sel && ((q.correct_indices && q.correct_indices.includes(sel[0])) || (q.correct_index === sel[0]));
         if (sel && sel.length > 0 && !isCorr) {
-          wrongList.push(q);
+          const qCopy = JSON.parse(JSON.stringify(q));
+          qCopy.__origIdx = idx;
+          wrongList.push(qCopy);
+          wrongKeysToClear.push(key);
         }
       });
 
       if (wrongList.length === 0) {
-        alert("Hiện tại chưa có câu làm sai trong môn này! Bạn làm bài rất xuất sắc 🎉");
+        showToast("🎉 Hiện tại chưa có câu làm sai nào trong môn này!");
         return;
       }
 
-      if (confirm(`Tìm thấy ${wrongList.length} câu làm sai. Bắt đầu luyện lại ngay?`)) {
-        feActiveBank = JSON.parse(JSON.stringify(wrongList));
+      if (confirm(`Tìm thấy ${wrongList.length} câu làm sai. Bắt đầu làm lại từ đầu (toàn bộ đáp án và giải thích sẽ được ẩn)?`)) {
+        // 1. Xóa toàn bộ lịch sử đã chọn của các câu sai này để người dùng tự chọn lại từ đầu
+        wrongKeysToClear.forEach(k => delete feAnswers[k]);
+
+        // 2. Tắt chế độ hiện đáp án & hiện giải thích
+        feShowAll = false;
+        feExpAll = false;
+        const btnAns = document.getElementById("btnFeToggleAnswers");
+        if (btnAns) btnAns.classList.remove("active");
+        const btnExp = document.getElementById("btnFeToggleExplanations");
+        if (btnExp) btnExp.classList.remove("active");
+
+        // 3. Nạp danh sách câu sai làm ngân hàng câu hỏi hiện tại
+        feActiveBank = wrongList;
         feQIdx = 0;
+
         renderFeQuestion();
-        showToast(`Đang luyện ${wrongList.length} câu sai! 🔥`);
+        renderFeNavGrid();
+        saveLocalSession();
+        triggerAutoSyncPush();
+        showToast(`🔥 Đang làm lại ${wrongList.length} câu sai (Đã ẩn đáp án)!`);
       }
     }
 
@@ -30984,7 +31007,8 @@ descSet.addAll(bookSet);`)">
 
     function toggleFeFlagCurrent() {
       safeVibrate(20);
-      const qKey = feSubject + "_" + feQIdx;
+      const q = feActiveBank[feQIdx];
+      const qKey = feSubject + "_" + (q && q.__origIdx !== undefined ? q.__origIdx : feQIdx);
       if (feFlags.has(qKey)) {
         feFlags.delete(qKey);
         showToast("Đã bỏ đánh dấu câu");
@@ -31014,8 +31038,9 @@ descSet.addAll(bookSet);`)">
       if (feQIdx >= feActiveBank.length) feQIdx = feActiveBank.length - 1;
 
       const q = feActiveBank[feQIdx];
-      const qKey = feSubject + "_" + feQIdx;
-      document.getElementById("feQNumBadge").textContent = `Câu ${feQIdx + 1} / ${feActiveBank.length}`;
+      const qKey = feSubject + "_" + (q.__origIdx !== undefined ? q.__origIdx : feQIdx);
+      const origText = (q.__origIdx !== undefined) ? ` [Gốc: Câu ${q.__origIdx + 1}]` : "";
+      document.getElementById("feQNumBadge").textContent = `Câu ${feQIdx + 1} / ${feActiveBank.length}${origText}`;
       
       const topicEl = document.getElementById("feTopicBadge");
       if (topicEl) {
@@ -31076,7 +31101,7 @@ descSet.addAll(bookSet);`)">
       let answeredCount = 0;
 
       feActiveBank.forEach((q, idx) => {
-        const key = feSubject + "_" + idx;
+        const key = feSubject + "_" + (q.__origIdx !== undefined ? q.__origIdx : idx);
         const sel = feAnswers[key];
         const hasAnswered = (sel && sel.length > 0);
         if (hasAnswered) answeredCount++;
@@ -31126,7 +31151,8 @@ descSet.addAll(bookSet);`)">
 
     function selectFeOption(oIdx) {
       safeVibrate(25);
-      const qKey = feSubject + "_" + feQIdx;
+      const q = feActiveBank[feQIdx];
+      const qKey = feSubject + "_" + (q && q.__origIdx !== undefined ? q.__origIdx : feQIdx);
       feAnswers[qKey] = [oIdx];
       renderFeQuestion();
       triggerAutoSyncPush();
