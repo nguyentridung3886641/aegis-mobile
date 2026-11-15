@@ -31069,7 +31069,7 @@ descSet.addAll(bookSet);`)">
       
       const topicEl = document.getElementById("feTopicBadge");
       if (topicEl) {
-        topicEl.textContent = q.topic || (q.chapter_name ? `Chương ${q.chapter}: ${q.chapter_name}` : "Tổng quan");
+        topicEl.textContent = q.chapter_name ? (q.chapter ? (q.chapter === 99 ? q.chapter_name : `Chương ${q.chapter}: ${q.chapter_name}`) : q.chapter_name) : (q.topic || "Tổng quan");
       }
 
       updateFlagButton();
