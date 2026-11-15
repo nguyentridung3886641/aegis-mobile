@@ -803,6 +803,16 @@
       opacity: 1;
     }
   </style>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW reg error:', err));
+      });
+    }
+  </script>
 </head>
 <body>
 
@@ -1104,7 +1114,7 @@ descSet.addAll(bookSet);`)">
                         3
                 ],
                 "correct_index": 3,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 13 - ICMP & Network Diagnostics): Câu hỏi tập trung vào ICMP & Troubleshooting. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Ping g\u1eedi g\u00f3i ICMP Echo Request (Type 8) th\u1eb3ng t\u1edbi IP \u0111\u00edch v\u00e0 ch\u1edd Echo Reply (Type 0) \u0111\u1ec3 \u0111o t\u00ednh s\u1ed1ng c\u00f2n v\u00e0 \u0111\u1ed9 tr\u1ec5 Round-Trip Time (RTT).\n\u2022 Tracert (traceroute) d\u00f2 tuy\u1ebfn \u0111\u01b0\u1eddng b\u1eb1ng c\u00e1ch g\u1eedi chu\u1ed7i g\u00f3i tin c\u00f3 TTL t\u0103ng d\u1ea7n t\u1eeb 1. M\u1ed7i router d\u1ecdc \u0111\u01b0\u1eddng gi\u1ea3m TTL v\u1ec1 0 v\u00e0 tr\u1ea3 v\u1ec1 ICMP Time Exceeded (Type 11), gi\u00fap m\u00e1y t\u00ednh l\u1eadp b\u1ea3n \u0111\u1ed3 t\u1eebng hop trung gian.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"Tracert shows each hop, while ping shows a destination reply only\" - \u0110\u00fang 100% nguy\u00ean l\u00fd: Tracert hi\u1ec3n th\u1ecb t\u1eebng ch\u1eb7ng (hop-by-hop), Ping ch\u1ec9 hi\u1ec3n th\u1ecb ph\u1ea3n h\u1ed3i t\u1eeb \u0111\u00edch cu\u1ed1i.\n\n\u274c PH\u00c2N T\u00cdCH B\u1eaaY:\n\u2022 A sai: Tracert v\u1eabn ph\u00e1t hi\u1ec7n g\u00f3i tin th\u00e0nh c\u00f4ng hay th\u1ea5t b\u1ea1i (k\u00fd hi\u1ec7u * khi timeout).\n\u2022 B sai: C\u1ea3 hai l\u1ec7nh \u0111\u1ec1u d\u00f9ng \u0111\u1ecba ch\u1ec9 IP.\n\u2022 C sai: M\u1eb7c \u0111\u1ecbnh c\u1ea3 hai \u0111\u1ec1u l\u00e0 c\u00f4ng c\u1ee5 d\u00f2ng l\u1ec7nh (CLI text mode), kh\u00f4ng c\u00f3 giao di\u1ec7n \u0111\u1ed3 h\u1ecda.\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Tracert = \"each hop\" (d\u00f2 t\u1eebng tr\u1ea1m). Ping = \"destination reply\" (ch\u1ec9 \u0111\u00edch \u0111\u1ebfn)."
         },
         {
                 "id": "NWC_002",
@@ -1492,7 +1502,7 @@ descSet.addAll(bookSet);`)">
                         2
                 ],
                 "correct_index": 2,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 14 - Transport Layer Protocols): Câu hỏi tập trung vào TCP / UDP & Ports. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I (Quy tr\u00ecnh Troubleshooting Cisco):\n1. Ping 127.0.0.1 (Loopback): Ki\u1ec3m tra ch\u1ed3ng giao th\u1ee9c TCP/IP n\u1ed9i b\u1ed9 tr\u00ean OS.\n2. Ping IP ch\u00ednh m\u00e1y m\u00ecnh: Ki\u1ec3m tra NIC & Driver.\n3. Ping Default Gateway: Ki\u1ec3m tra c\u00e1p LAN, Switch, Router c\u1ee5c b\u1ed9.\n4. Ping Server ngo\u00e0i Internet: Ki\u1ec3m tra \u0111\u1ecbnh tuy\u1ebfn ISP & DNS.\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"Nothing can be determined for sure at this point\" - V\u00ec k\u1ef9 thu\u1eadt vi\u00ean m\u1edbi ping LAN v\u00e0 Gateway th\u1ea5t b\u1ea1i, ch\u01b0a ping 127.0.0.1. L\u1ed7i c\u00f3 th\u1ec3 do \u0111\u1ee9t c\u00e1p, l\u1ecfng jack RJ45, sai subnet mask, switchport b\u1ecb disable... Ch\u01b0a \u0111\u1ee7 c\u01a1 s\u1edf \u0111\u1ec3 k\u1ebft lu\u1eadn b\u1ea5t c\u1ee9 ph\u1ea7n c\u1ee9ng hay giao th\u1ee9c n\u00e0o h\u1ecfng!\n\n\u274c PH\u00c2N T\u00cdCH B\u1eaaY (B\u1ea0N \u0110\u00c3 CH\u1eccN A):\n\u2022 A sai (\"The TCP/IP protocol is not enabled\"): K\u1ef9 thu\u1eadt vi\u00ean c\u00f2n \u0111ang remote \u0111i\u1ec1u khi\u1ec3n m\u00e1y ng\u01b0\u1eddi d\u00f9ng -> TCP/IP stack \u0111ang ho\u1ea1t \u0111\u1ed9ng; h\u01a1n n\u1eefa ch\u01b0a ping 127.0.0.1 th\u00ec c\u1ea5m \u0111o\u00e1n m\u00f2 giao th\u1ee9c b\u1ecb t\u1eaft.\n\u2022 B sai (\"NIC is bad\"): \u0110\u1ee9t d\u00e2y m\u1ea1ng ho\u1eb7c switch h\u1ecfng c\u0169ng cho k\u1ebft qu\u1ea3 t\u01b0\u01a1ng t\u1ef1, kh\u00f4ng th\u1ec3 \u0111\u1ed5 l\u1ed7i cho NIC.\n\u2022 D sai: Router c\u00f3 th\u1ec3 v\u1eabn ch\u1ea1y b\u00ecnh th\u01b0\u1eddng nh\u01b0ng \u0111\u01b0\u1eddng d\u00e2y t\u1eeb PC \u0111\u1ebfn switch b\u1ecb ng\u1eaft.\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: Ch\u01b0a ping loopback 127.0.0.1 -> Kh\u00f4ng th\u1ec3 k\u1ebft lu\u1eadn -> Ch\u1ecdn \"Nothing can be determined for sure at this point\"."
         },
         {
                 "id": "NWC_022",
@@ -1760,7 +1770,7 @@ descSet.addAll(bookSet);`)">
                         3
                 ],
                 "correct_index": 3,
-                "explanation": "Kiến thức chuẩn Cisco CCNA ITN (Module 1 - Network Fundamentals): Câu hỏi tập trung vào General Networking. Đáp án chính xác tuyệt đối được trích xuất từ dữ liệu chấm điểm của Cisco NetAcad."
+                "explanation": "\ud83c\udfaf B\u1ea2N CH\u1ea4T C\u1ed0T L\u00d5I:\n\u2022 Man-in-the-middle (MitM) l\u00e0 h\u00ecnh th\u1ee9c t\u1ea5n c\u00f4ng m\u00e0 k\u1ebb x\u1ea5u b\u00ed m\u1eadt ch\u00e8n v\u00e0o gi\u1eefa lu\u1ed3ng li\u00ean l\u1ea1c c\u1ee7a hai \u0111\u1ea7u cu\u1ed1i (two endpoints), ch\u1eb7n b\u1eaft, nghe l\u00e9n ho\u1eb7c gi\u1ea3 m\u1ea1o s\u1eeda \u0111\u1ed5i d\u1eef li\u1ec7u (compromise of data).\n\n\u2705 \u0110\u00c1P \u00c1N \u0110\u00daNG:\n\"man-in-the-middle attack\" - C\u1ee5m t\u1eeb \"compromise of data that occurs between two end points\" ch\u00ednh l\u00e0 \u0111\u1ecbnh ngh\u0129a chu\u1ea9n Cisco NetAcad c\u1ee7a MitM.\n\n\u274c PH\u00c2N T\u00cdCH B\u1eaaY (B\u1ea0N \u0110\u00c3 CH\u1eccN A):\n\u2022 A sai (\"denial-of-service\"): DoS ch\u1ec9 l\u00e0m ng\u1eadp l\u1ee5t b\u0103ng th\u00f4ng / c\u1ea1n ki\u1ec7t t\u00e0i nguy\u00ean m\u00e1y ch\u1ee7 \u0111\u1ec3 ph\u00e1 ho\u1ea1i t\u00ednh kh\u1ea3 d\u1ee5ng (Availability), kh\u00f4ng x\u00e2m h\u1ea1i/can thi\u1ec7p d\u1eef li\u1ec7u trao \u0111\u1ed5i gi\u1eefa 2 \u0111\u1ea7u cu\u1ed1i.\n\u2022 Username enumeration / extraction of security parameters: K\u1ef9 thu\u1eadt do th\u00e1m (reconnaissance), kh\u00f4ng ph\u1ea3i t\u1ea5n c\u00f4ng gi\u1eefa 2 endpoint.\n\n\u26a1 M\u1eb8O NH\u1eda 3 GI\u00c2Y: \"between two end points\" + \"compromise data\" = Man-in-the-middle."
         },
         {
                 "id": "NWC_036",
