@@ -31330,13 +31330,38 @@ descSet.addAll(bookSet);`)">
 
     function getUnifiedSyncPayload() {
       lastLocalEditTime = Date.now();
+      const prefix = feSubject + "_";
+      let maxIdx = feQIdx;
+      Object.keys(feAnswers).forEach(k => {
+        if (k.startsWith(prefix)) {
+          const idx = parseInt(k.substring(prefix.length), 10);
+          if (!isNaN(idx) && idx > maxIdx) maxIdx = idx;
+        }
+      });
+
+      const ansArr = [];
+      const compactAnswers = {};
+      for (let i = 0; i <= maxIdx; i++) {
+        const v = feAnswers[prefix + i];
+        if (!v || v.length === 0) {
+          ansArr.push(null);
+        } else if (v.length === 1) {
+          ansArr.push(v[0]);
+          compactAnswers[String(i)] = v[0];
+        } else {
+          ansArr.push(v);
+          compactAnswers[String(i)] = v;
+        }
+      }
+
       return {
-        syncVersion: 3,
+        syncVersion: 4,
         client: 'AegisMobile',
         timestamp: lastLocalEditTime,
         subject: feSubject,
         qIdx: feQIdx,
-        answers: feAnswers,
+        ansArr: ansArr,
+        answers: compactAnswers,
         flags: Array.from(feFlags),
         fcMastered: Array.from(fcStats.mastered),
         fcReview: Array.from(fcStats.review)
@@ -31357,7 +31382,26 @@ descSet.addAll(bookSet);`)">
       }
 
       // Populate answers & flags
-      if (data.answers) feAnswers = data.answers;
+      const prefix = feSubject + "_";
+      if (Array.isArray(data.ansArr)) {
+        data.ansArr.forEach((val, idx) => {
+          if (val !== null && val !== undefined) {
+            feAnswers[prefix + idx] = Array.isArray(val) ? val : [val];
+          }
+        });
+      } else if (data.answers) {
+        Object.keys(data.answers).forEach(k => {
+          const val = data.answers[k];
+          const arrVal = Array.isArray(val) ? val : [val];
+          if (k.startsWith(prefix)) {
+            feAnswers[k] = arrVal;
+          } else if (!isNaN(parseInt(k, 10))) {
+            feAnswers[prefix + k] = arrVal;
+          } else {
+            feAnswers[k] = arrVal;
+          }
+        });
+      }
       if (Array.isArray(data.flags)) feFlags = new Set(data.flags);
       if (Array.isArray(data.fcMastered)) fcStats.mastered = new Set(data.fcMastered);
       if (Array.isArray(data.fcReview)) fcStats.review = new Set(data.fcReview);
@@ -31429,9 +31473,21 @@ descSet.addAll(bookSet);`)">
           for (let i = lines.length - 1; i >= 0; i--) {
             try {
               const entry = JSON.parse(lines[i]);
-              if (entry && entry.message) {
-                const parsed = JSON.parse(entry.message);
-                if (parsed && parsed.syncVersion && parsed.answers && typeof parsed.qIdx === 'number') {
+              if (entry) {
+                let parsed = null;
+                // If message exceeded 4KB, ntfy automatically stored it as an attachment
+                if (entry.attachment && entry.attachment.url) {
+                  try {
+                    const attResp = await fetch(entry.attachment.url, { cache: "no-store" });
+                    if (attResp.ok) parsed = await attResp.json();
+                  } catch(e) {}
+                }
+                if (!parsed && entry.message) {
+                  try {
+                    parsed = JSON.parse(entry.message);
+                  } catch(e) {}
+                }
+                if (parsed && (parsed.syncVersion || parsed.answers || parsed.ansArr) && typeof parsed.qIdx === 'number') {
                   cloudData = parsed;
                   break;
                 }
@@ -31451,11 +31507,14 @@ descSet.addAll(bookSet);`)">
       }
 
       // Conflict resolution:
-      // If user hasn't edited locally on this tab (lastLocalEditTime === 0),
-      // OR cloud timestamp is newer than our local edits,
-      // OR cloud has more answers than local:
       const localAnsCount = Object.keys(feAnswers || {}).length;
-      const cloudAnsCount = Object.keys(cloudData.answers || {}).length;
+      let cloudAnsCount = 0;
+      if (Array.isArray(cloudData.ansArr)) {
+        cloudAnsCount = cloudData.ansArr.filter(x => x !== null && x !== undefined).length;
+      } else if (cloudData.answers) {
+        cloudAnsCount = Object.keys(cloudData.answers).length;
+      }
+
       const shouldApply = (lastLocalEditTime === 0) || 
                           (cloudData.timestamp > lastLocalEditTime) ||
                           (cloudAnsCount > localAnsCount);
