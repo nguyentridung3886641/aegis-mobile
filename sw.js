@@ -1,5 +1,5 @@
 // AegisMobile Service Worker - v3.2 Network-First for Instant Updates
-const CACHE_NAME = 'aegismobile-v3.5';
+const CACHE_NAME = 'aegismobile-v3.6';
 const ASSETS = [
   './manifest.json',
   './icon-192.png',
