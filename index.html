@@ -31520,9 +31520,15 @@ descSet.addAll(bookSet);`)">
         cloudAnsCount = Object.keys(cloudData.answers).length;
       }
 
+      // Safeguard: Never let a cloud payload with FEWER answers overwrite richer local state
+      if (localAnsCount > 0 && cloudAnsCount < localAnsCount) {
+        console.warn(`Local has ${localAnsCount} answers, cloud only has ${cloudAnsCount}. Keeping local!`);
+        return false;
+      }
+
       const shouldApply = (lastLocalEditTime === 0) || 
                           (cloudData.timestamp > lastLocalEditTime) ||
-                          (cloudAnsCount > localAnsCount);
+                          (cloudAnsCount >= localAnsCount);
 
       if (!shouldApply) {
         return false;
@@ -31555,16 +31561,25 @@ descSet.addAll(bookSet);`)">
         }
       } catch(e) {}
 
-      // One-time rescue to Câu 371
-      const RESCUE_KEY = "AEGIS_RESCUE_371_V1";
-      if (!SafeStore.get(RESCUE_KEY) && feSubject === "nwc204") {
-        if (feQIdx < 370) {
-          feQIdx = 370; // Câu 371 (0-indexed 370)
+      // Embedded baseline recovery to ensure historical answers are never lost
+      const HISTORICAL_ANSWERS = {"nwc204_0": [3], "nwc204_1": [3], "nwc204_2": [3], "nwc204_3": [0], "nwc204_4": [0], "nwc204_5": [3], "nwc204_6": [3], "nwc204_7": [1], "nwc204_8": [1], "nwc204_9": [1], "nwc204_10": [0], "nwc204_11": [2], "nwc204_12": [1], "nwc204_13": [4], "nwc204_14": [1], "nwc204_15": [0], "nwc204_16": [0], "nwc204_17": [1], "nwc204_18": [2], "nwc204_19": [3], "nwc204_20": [0], "nwc204_21": [2], "nwc204_22": [2], "nwc204_23": [0], "nwc204_24": [2], "nwc204_25": [0], "nwc204_26": [0], "nwc204_27": [0], "nwc204_28": [0], "nwc204_29": [0], "nwc204_30": [1], "nwc204_31": [2], "nwc204_32": [2], "nwc204_33": [0], "nwc204_34": [0], "nwc204_35": [2], "nwc204_36": [2], "nwc204_37": [0], "nwc204_38": [1], "nwc204_39": [2], "nwc204_40": [1], "nwc204_41": [4], "nwc204_42": [3], "nwc204_43": [1], "nwc204_44": [1], "nwc204_45": [1], "nwc204_46": [1], "nwc204_47": [0], "nwc204_48": [0], "nwc204_49": [0], "nwc204_50": [0], "nwc204_51": [2], "nwc204_52": [2], "nwc204_53": [1], "nwc204_54": [1], "nwc204_55": [0], "nwc204_56": [2], "nwc204_57": [1], "nwc204_58": [1], "nwc204_59": [3], "nwc204_60": [2], "nwc204_61": [3], "nwc204_62": [2], "nwc204_63": [2], "nwc204_64": [2], "nwc204_65": [4], "nwc204_66": [3], "nwc204_67": [0], "nwc204_68": [1], "nwc204_69": [1], "nwc204_70": [3], "nwc204_71": [2], "nwc204_72": [2], "nwc204_73": [3], "nwc204_74": [2], "nwc204_75": [0], "nwc204_76": [0], "nwc204_77": [2], "nwc204_78": [3], "nwc204_79": [1], "nwc204_80": [0], "nwc204_81": [2], "nwc204_82": [1], "nwc204_83": [3], "nwc204_84": [2], "nwc204_85": [0], "nwc204_86": [0], "nwc204_87": [0], "nwc204_88": [1], "nwc204_89": [0], "nwc204_90": [3], "nwc204_91": [1], "nwc204_92": [2], "nwc204_93": [1], "nwc204_94": [0], "nwc204_95": [0], "nwc204_96": [1], "nwc204_97": [1], "nwc204_98": [5], "nwc204_99": [5], "nwc204_100": [3], "nwc204_101": [3], "nwc204_102": [1], "nwc204_103": [2], "nwc204_238": [3], "nwc204_240": [3], "nwc204_245": [0], "nwc204_288": [0], "nwc204_370": [1]};
+      if (feSubject === "nwc204") {
+        let restoredCount = 0;
+        for (const k in HISTORICAL_ANSWERS) {
+          if (!feAnswers[k]) {
+            feAnswers[k] = HISTORICAL_ANSWERS[k];
+            restoredCount++;
+          }
         }
-        SafeStore.set(RESCUE_KEY, "true");
-        saveLocalSession();
-        renderFeQuestion();
-        renderFeNavGrid();
+        // If current question index is stuck at 0 or forced to 370, return to Câu 104
+        if (feQIdx === 0 || feQIdx === 370) {
+          feQIdx = 103; // Câu 104
+        }
+        if (restoredCount > 0 || feQIdx === 103) {
+          saveLocalSession();
+          renderFeQuestion();
+          renderFeNavGrid();
+        }
       }
     }
 
