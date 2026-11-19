@@ -845,6 +845,30 @@
       border: 1px solid rgba(248,81,73,0.4); border-radius: 4px;
       padding: 1px 5px; font-size: 11px; font-weight: 700;
     }
+    .proof-box {
+      background: #0d1117; border: 1px solid #30363d; border-radius: 8px;
+      padding: 9px 11px; margin: 8px 0; font-size: 12px;
+    }
+    .proof-title {
+      font-weight: 800; color: #facc15; margin-bottom: 5px; font-size: 12.5px;
+    }
+    .proof-title.fallacy { color: #ff7b72; }
+    .proof-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      gap: 10px; padding: 2px 0; flex-wrap: wrap;
+    }
+    .proof-expr {
+      font-family: var(--font-mono); color: #e6edf3; font-weight: 700;
+      min-width: 92px;
+    }
+    .proof-note {
+      color: var(--text-muted); font-size: 11.5px; flex: 1;
+    }
+    .proof-conclusion {
+      border-top: 1px dashed #484f58; margin-top: 4px; padding-top: 5px;
+    }
+    .proof-conclusion .proof-expr { color: #3fb950; }
+    .proof-conclusion.invalid .proof-expr { color: #f85149; }
 
   </style>
 </head>
@@ -1043,10 +1067,75 @@
       <div class="cs-section-title">📖 Lý Thuyết Ngắn Gọn 12 Chương MAD101 (Nhìn Là Chọn)</div>
 
       <div class="theory-card">
-        <h4>1. Logic Mệnh Đề &amp; Quy Tắc Suy Diễn</h4>
-        <ul>
-          <li><b>Modus Ponens:</b> <code>p → q, p ⊢ q</code> (ĐÚNG). <b>Modus Tollens:</b> <code>p → q, ¬q ⊢ ¬p</code> (ĐÚNG).</li>
-          <li><span class="trap-badge">2 BẪY NGỤY BIỆN</span> <b>Affirming the Conclusion</b> (<code>p → q, q ⊬ p</code>) và <b>Denying the Hypothesis</b> (<code>p → q, ¬p ⊬ ¬q</code>).</li>
+        <h4>1. Logic Mệnh Đề &amp; 8 Quy Tắc Suy Diễn (Rules of Inference)</h4>
+
+        <div class="proof-box">
+          <div class="proof-title">① Modus Ponens (Quy tắc khẳng định)</div>
+          <div class="proof-row"><span class="proof-expr">p → q</span><span class="proof-note">Tiền đề 1: Nếu có p thì có q</span></div>
+          <div class="proof-row"><span class="proof-expr">p</span><span class="proof-note">Tiền đề 2: Thực tế p đúng</span></div>
+          <div class="proof-row proof-conclusion"><span class="proof-expr">⇒ q</span><span class="proof-note"><b>Suy ra:</b> Chắc chắn q đúng</span></div>
+        </div>
+
+        <div class="proof-box">
+          <div class="proof-title">② Modus Tollens (Quy tắc phủ định)</div>
+          <div class="proof-row"><span class="proof-expr">p → q</span><span class="proof-note">Tiền đề 1: Nếu có p thì có q</span></div>
+          <div class="proof-row"><span class="proof-expr">¬q</span><span class="proof-note">Tiền đề 2: Thực tế q sai (không có q)</span></div>
+          <div class="proof-row proof-conclusion"><span class="proof-expr">⇒ ¬p</span><span class="proof-note"><b>Suy ra:</b> Chắc chắn p sai (không có p)</span></div>
+        </div>
+
+        <div class="proof-box">
+          <div class="proof-title">③ Hypothetical Syllogism (Tam đoạn luận giả định — Bắc cầu)</div>
+          <div class="proof-row"><span class="proof-expr">p → q</span><span class="proof-note">Tiền đề 1: p kéo theo q</span></div>
+          <div class="proof-row"><span class="proof-expr">q → r</span><span class="proof-note">Tiền đề 2: q kéo theo r</span></div>
+          <div class="proof-row proof-conclusion"><span class="proof-expr">⇒ p → r</span><span class="proof-note"><b>Suy ra:</b> Nối bắc cầu p kéo theo r</span></div>
+        </div>
+
+        <div class="proof-box">
+          <div class="proof-title">④ Disjunctive Syllogism (Tam đoạn luận tuyển — Loại trừ)</div>
+          <div class="proof-row"><span class="proof-expr">p ∨ q</span><span class="proof-note">Tiền đề 1: Ít nhất 1 trong 2 (p hoặc q) đúng</span></div>
+          <div class="proof-row"><span class="proof-expr">¬p</span><span class="proof-note">Tiền đề 2: Loại bỏ p (p sai)</span></div>
+          <div class="proof-row proof-conclusion"><span class="proof-expr">⇒ q</span><span class="proof-note"><b>Suy ra:</b> Bắt buộc q phải đúng</span></div>
+        </div>
+
+        <div class="proof-box">
+          <div class="proof-title">⑤ Addition (Quy tắc cộng / mở rộng)</div>
+          <div class="proof-row"><span class="proof-expr">p</span><span class="proof-note">Tiền đề: p đã đúng sẵn</span></div>
+          <div class="proof-row proof-conclusion"><span class="proof-expr">⇒ p ∨ q</span><span class="proof-note"><b>Suy ra:</b> "p hoặc bất cứ q nào" cũng luôn đúng</span></div>
+        </div>
+
+        <div class="proof-box">
+          <div class="proof-title">⑥ Simplification (Quy tắc rút gọn)</div>
+          <div class="proof-row"><span class="proof-expr">p ∧ q</span><span class="proof-note">Tiền đề: Cả p và q đều cùng đúng</span></div>
+          <div class="proof-row proof-conclusion"><span class="proof-expr">⇒ p</span><span class="proof-note"><b>Suy ra:</b> Tách riêng p (hoặc q) đều đúng</span></div>
+        </div>
+
+        <div class="proof-box">
+          <div class="proof-title">⑦ Conjunction (Quy tắc hội — Gộp tiền đề)</div>
+          <div class="proof-row"><span class="proof-expr">p</span><span class="proof-note">Tiền đề 1: p đúng</span></div>
+          <div class="proof-row"><span class="proof-expr">q</span><span class="proof-note">Tiền đề 2: q đúng</span></div>
+          <div class="proof-row proof-conclusion"><span class="proof-expr">⇒ p ∧ q</span><span class="proof-note"><b>Suy ra:</b> Gộp lại "p và q" cùng đúng</span></div>
+        </div>
+
+        <div class="proof-box">
+          <div class="proof-title">⑧ Resolution (Hợp giải — Hay ra FE &amp; nền tảng Prolog!)</div>
+          <div class="proof-row"><span class="proof-expr">p ∨ q</span><span class="proof-note">Tiền đề 1: p đúng hoặc q đúng</span></div>
+          <div class="proof-row"><span class="proof-expr">¬p ∨ r</span><span class="proof-note">Tiền đề 2: p sai hoặc r đúng</span></div>
+          <div class="proof-row proof-conclusion"><span class="proof-expr">⇒ q ∨ r</span><span class="proof-note"><b>Suy ra:</b> Triệt tiêu cặp đối nhau p &amp; ¬p → còn q ∨ r</span></div>
+        </div>
+
+        <div class="proof-box" style="border-color:rgba(248,81,73,0.45);">
+          <div class="proof-title fallacy">⚠️ 2 BẪY NGỤY BIỆN KINH ĐIỂN (FALLACIES — LẬP LUẬN SAI)</div>
+          <div class="proof-row"><span class="proof-expr">p → q</span><span class="proof-note">Tiền đề 1: Nếu p thì q</span></div>
+          <div class="proof-row"><span class="proof-expr">q</span><span class="proof-note">Tiền đề 2: Thấy có q (Affirming the Conclusion)</span></div>
+          <div class="proof-row proof-conclusion invalid"><span class="proof-expr">⇏ p</span><span class="proof-note"><b>SAI!</b> Không suy ra được p (q có thể đúng do nguyên nhân khác)</span></div>
+          <div style="height:8px;"></div>
+          <div class="proof-row"><span class="proof-expr">p → q</span><span class="proof-note">Tiền đề 1: Nếu p thì q</span></div>
+          <div class="proof-row"><span class="proof-expr">¬p</span><span class="proof-note">Tiền đề 2: Không có p (Denying the Hypothesis)</span></div>
+          <div class="proof-row proof-conclusion invalid"><span class="proof-expr">⇏ ¬q</span><span class="proof-note"><b>SAI!</b> Không suy ra được ¬q (không có p, q vẫn có thể đúng)</span></div>
+        </div>
+
+        <ul style="margin-top:8px;">
+          <li><b>5 Luật tương đương hay dùng nhất:</b> <code>p → q ≡ ¬p ∨ q</code>; De Morgan <code>¬(p∧q) ≡ ¬p∨¬q</code>; Phân phối; Hấp thụ <code>p ∨ (p∧q) ≡ p</code>; Phản đảo <code>p → q ≡ ¬q → ¬p</code>.</li>
           <li><b>Dịch <code>p → q</code>:</b> "p is sufficient for q", "q is necessary for p", "q whenever p", "p only if q".</li>
         </ul>
       </div>
