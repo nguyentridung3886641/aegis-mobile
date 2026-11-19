@@ -1060,6 +1060,98 @@
           </tbody>
         </table>
       </div>
+
+      <div class="cs-section-title">🕸️ 3. Bảng 5 Loại Đồ Thị Đặc Biệt (K_n, K_m,n, C_n, W_n, Q_n)</div>
+      <div class="cs-table-wrap">
+        <table class="cs-table">
+          <thead>
+            <tr>
+              <th>Đồ thị</th>
+              <th>Đỉnh |V| &amp; Cạnh |E|</th>
+              <th>Bậc &amp; Sắc số χ</th>
+              <th>Euler / Hamilton / Bipartite / Phẳng</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>K_n</b><br><i>(Đầy đủ)</i></td>
+              <td><code>|V| = n</code><br><code>|E| = n(n-1)/2</code></td>
+              <td>Mọi đỉnh bậc <b>n - 1</b><br><code>χ = n</code></td>
+              <td>• <b>Euler Circuit:</b> n lẻ (n ≥ 3)<br>• <b>Euler Path (ko chu trình):</b> <b>n = 2</b><br>• <b>Hamilton Circuit:</b> n ≥ 3<br>• <b>Bipartite:</b> n ≤ 2 | <b>Phẳng:</b> n ≤ 4</td>
+            </tr>
+            <tr>
+              <td><b>K_(m,n)</b><br><i>(Phân đôi đủ)</i></td>
+              <td><code>|V| = m + n</code><br><code>|E| = m · n</code></td>
+              <td>m đỉnh bậc n,<br>n đỉnh bậc m<br><code>χ = 2</code></td>
+              <td>• <b>Euler Circuit:</b> cả m, n đều chẵn<br>• <b>Hamilton Circuit:</b> m = n ≥ 2<br>• <b>Bipartite:</b> LUÔN ĐÚNG<br>• <b>Phẳng:</b> m ≤ 2 hoặc n ≤ 2</td>
+            </tr>
+            <tr>
+              <td><b>C_n</b><br><i>(Vòng, n ≥ 3)</i></td>
+              <td><code>|V| = n</code><br><code>|E| = n</code></td>
+              <td>Mọi đỉnh bậc <b>2</b><br><code>χ = 2</code> (n chẵn)<br><code>χ = 3</code> (n lẻ)</td>
+              <td>• <b>Euler Circuit:</b> LUÔN CÓ<br>• <b>Hamilton Circuit:</b> LUÔN CÓ<br>• <b>Bipartite:</b> n chẵn | <b>Phẳng:</b> LUÔN ĐÚNG</td>
+            </tr>
+            <tr>
+              <td><b>W_n</b><br><i>(Bánh xe, n ≥ 3)</i></td>
+              <td><span class="trap-badge">BẪY</span> <b>|V| = n + 1</b><br><code>|E| = 2n</code></td>
+              <td>Tâm bậc <b>n</b>,<br>n đỉnh vòng bậc <b>3</b><br><code>χ = 3</code> (n chẵn)<br><code>χ = 4</code> (n lẻ)</td>
+              <td>• <b>Euler Circuit:</b> KHÔNG (vòng bậc 3 lẻ!)<br>• <b>Hamilton Circuit:</b> LUÔN CÓ<br>• <b>Bipartite:</b> KHÔNG (có C_3)<br>• <b>Phẳng:</b> LUÔN ĐÚNG</td>
+            </tr>
+            <tr>
+              <td><b>Q_n</b><br><i>(Lập phương n chiều)</i></td>
+              <td><code>|V| = 2ⁿ</code><br><code>|E| = n · 2^(n-1)</code></td>
+              <td>Mọi đỉnh bậc <b>n</b><br><code>χ = 2</code> (n ≥ 1)</td>
+              <td>• <b>Euler Circuit:</b> n chẵn (n ≥ 2)<br>• <b>Hamilton Circuit:</b> n ≥ 2<br>• <b>Bipartite:</b> LUÔN ĐÚNG | <b>Phẳng:</b> n ≤ 3</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cs-section-title">🐇 4. Công Thức Các Bài Toán Truy Hồi &amp; Đếm Kinh Điển</div>
+      <div class="cs-table-wrap">
+        <table class="cs-table">
+          <thead>
+            <tr>
+              <th style="width:32%;">Bài toán phổ biến</th>
+              <th>Hệ thức truy hồi &amp; Công thức đóng</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Tháp Hà Nội (Xếp đĩa)</b><br><i>Tower of Hanoi</i></td>
+              <td>• Truy hồi: <code>H_n = 2H_(n-1) + 1</code> với <code>H_1 = 1</code>.<br>• Công thức đóng: <b>H_n = 2ⁿ - 1</b>.<br><i>(VD: 3 đĩa = 7 bước; 5 đĩa = 31 bước; 64 đĩa = 2⁶⁴ - 1).</i></td>
+            </tr>
+            <tr>
+              <td><b>Đếm thỏ (Fibonacci)</b></td>
+              <td>• Truy hồi: <b>f_n = f_(n-1) + f_(n-2)</b> (<code>f_0=0, f_1=1</code> hoặc <code>f_1=1, f_2=1</code>).<br>• Dãy: <code>1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89...</code></td>
+            </tr>
+            <tr>
+              <td><b>Xâu bit dài n KHÔNG có hai số 0 liền nhau</b></td>
+              <td>• Truy hồi: <code>a_n = a_(n-1) + a_(n-2)</code> với <b>a_1 = 2, a_2 = 3</b>.<br>• Dãy: <code>2, 3, 5, 8, 13, 21...</code> (chính là <code>f_(n+2)</code>).<br>• <i>Có ít nhất hai số 0 liền nhau:</i> <b>2ⁿ - a_n</b>.</td>
+            </tr>
+            <tr>
+              <td><b>Leo cầu thang n bậc</b><br><i>(mỗi bước 1 hoặc 2 bậc)</i></td>
+              <td>• Truy hồi: <code>a_n = a_(n-1) + a_(n-2)</code> với <b>a_1 = 1, a_2 = 2</b>.<br>• Dãy: <code>1, 2, 3, 5, 8, 13, 21...</code></td>
+            </tr>
+            <tr>
+              <td><b>Lãi kép ngân hàng</b><br><i>Compound Interest</i></td>
+              <td>• Truy hồi: <code>P_n = (1 + r)·P_(n-1)</code>.<br>• Công thức đóng: <b>P_n = P_0 · (1 + r)ⁿ</b>.</td>
+            </tr>
+            <tr>
+              <td><b>Hoán vị mất trật tự</b><br><i>Derangement D_n (ko ai đúng chỗ)</i></td>
+              <td>• Truy hồi: <code>D_n = (n - 1)(D_(n-1) + D_(n-2))</code>.<br>• Công thức: <code>D_n = n! · ∑ (-1)^k / k!</code> (k = 0..n).<br>• Nhớ nhanh: <b>D_1=0, D_2=1, D_3=2, D_4=9, D_5=44</b>.</td>
+            </tr>
+            <tr>
+              <td><b>Số Catalan C_n</b><br><i>(ngoặc đúng / cây nhị phân n nút)</i></td>
+              <td>• Công thức: <b>C_n = C(2n, n) / (n + 1)</b>.<br>• Nhớ nhanh: <b>C_0=1, C_1=1, C_2=2, C_3=5, C_4=14, C_5=42</b>.</td>
+            </tr>
+            <tr>
+              <td><b>Chia kẹo Euler</b><br><i>x_1 + ... + x_k = n</i></td>
+              <td>• Nghiệm nguyên <b>không âm</b> (<code>x_i ≥ 0</code>): <b>C(n + k - 1, k - 1)</b>.<br>• Nghiệm nguyên <b>dương</b> (<code>x_i ≥ 1</code>): <b>C(n - 1, k - 1)</b>.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <!-- TAB 3: THEORY (LÝ THUYẾT NGẮN GỌN 12 CHƯƠNG) -->
