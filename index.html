@@ -1073,65 +1073,65 @@
           <div class="proof-title">① Modus Ponens (Quy tắc khẳng định)</div>
           <div class="proof-row"><span class="proof-expr">p → q</span><span class="proof-note">Tiền đề 1: Nếu có p thì có q</span></div>
           <div class="proof-row"><span class="proof-expr">p</span><span class="proof-note">Tiền đề 2: Thực tế p đúng</span></div>
-          <div class="proof-row proof-conclusion"><span class="proof-expr">⇒ q</span><span class="proof-note"><b>Suy ra:</b> Chắc chắn q đúng</span></div>
+          <div class="proof-row proof-conclusion"><span class="proof-expr">∴ q</span><span class="proof-note"><b>Suy ra:</b> Chắc chắn q đúng</span></div>
         </div>
 
         <div class="proof-box">
           <div class="proof-title">② Modus Tollens (Quy tắc phủ định)</div>
           <div class="proof-row"><span class="proof-expr">p → q</span><span class="proof-note">Tiền đề 1: Nếu có p thì có q</span></div>
           <div class="proof-row"><span class="proof-expr">¬q</span><span class="proof-note">Tiền đề 2: Thực tế q sai (không có q)</span></div>
-          <div class="proof-row proof-conclusion"><span class="proof-expr">⇒ ¬p</span><span class="proof-note"><b>Suy ra:</b> Chắc chắn p sai (không có p)</span></div>
+          <div class="proof-row proof-conclusion"><span class="proof-expr">∴ ¬p</span><span class="proof-note"><b>Suy ra:</b> Chắc chắn p sai (không có p)</span></div>
         </div>
 
         <div class="proof-box">
           <div class="proof-title">③ Hypothetical Syllogism (Tam đoạn luận giả định — Bắc cầu)</div>
           <div class="proof-row"><span class="proof-expr">p → q</span><span class="proof-note">Tiền đề 1: p kéo theo q</span></div>
           <div class="proof-row"><span class="proof-expr">q → r</span><span class="proof-note">Tiền đề 2: q kéo theo r</span></div>
-          <div class="proof-row proof-conclusion"><span class="proof-expr">⇒ p → r</span><span class="proof-note"><b>Suy ra:</b> Nối bắc cầu p kéo theo r</span></div>
+          <div class="proof-row proof-conclusion"><span class="proof-expr">∴ p → r</span><span class="proof-note"><b>Suy ra:</b> Nối bắc cầu p kéo theo r</span></div>
         </div>
 
         <div class="proof-box">
           <div class="proof-title">④ Disjunctive Syllogism (Tam đoạn luận tuyển — Loại trừ)</div>
           <div class="proof-row"><span class="proof-expr">p ∨ q</span><span class="proof-note">Tiền đề 1: Ít nhất 1 trong 2 (p hoặc q) đúng</span></div>
           <div class="proof-row"><span class="proof-expr">¬p</span><span class="proof-note">Tiền đề 2: Loại bỏ p (p sai)</span></div>
-          <div class="proof-row proof-conclusion"><span class="proof-expr">⇒ q</span><span class="proof-note"><b>Suy ra:</b> Bắt buộc q phải đúng</span></div>
+          <div class="proof-row proof-conclusion"><span class="proof-expr">∴ q</span><span class="proof-note"><b>Suy ra:</b> Bắt buộc q phải đúng</span></div>
         </div>
 
         <div class="proof-box">
           <div class="proof-title">⑤ Addition (Quy tắc cộng / mở rộng)</div>
           <div class="proof-row"><span class="proof-expr">p</span><span class="proof-note">Tiền đề: p đã đúng sẵn</span></div>
-          <div class="proof-row proof-conclusion"><span class="proof-expr">⇒ p ∨ q</span><span class="proof-note"><b>Suy ra:</b> "p hoặc bất cứ q nào" cũng luôn đúng</span></div>
+          <div class="proof-row proof-conclusion"><span class="proof-expr">∴ p ∨ q</span><span class="proof-note"><b>Suy ra:</b> "p hoặc bất cứ q nào" cũng luôn đúng</span></div>
         </div>
 
         <div class="proof-box">
           <div class="proof-title">⑥ Simplification (Quy tắc rút gọn)</div>
           <div class="proof-row"><span class="proof-expr">p ∧ q</span><span class="proof-note">Tiền đề: Cả p và q đều cùng đúng</span></div>
-          <div class="proof-row proof-conclusion"><span class="proof-expr">⇒ p</span><span class="proof-note"><b>Suy ra:</b> Tách riêng p (hoặc q) đều đúng</span></div>
+          <div class="proof-row proof-conclusion"><span class="proof-expr">∴ p</span><span class="proof-note"><b>Suy ra:</b> Tách riêng p (hoặc q) đều đúng</span></div>
         </div>
 
         <div class="proof-box">
           <div class="proof-title">⑦ Conjunction (Quy tắc hội — Gộp tiền đề)</div>
           <div class="proof-row"><span class="proof-expr">p</span><span class="proof-note">Tiền đề 1: p đúng</span></div>
           <div class="proof-row"><span class="proof-expr">q</span><span class="proof-note">Tiền đề 2: q đúng</span></div>
-          <div class="proof-row proof-conclusion"><span class="proof-expr">⇒ p ∧ q</span><span class="proof-note"><b>Suy ra:</b> Gộp lại "p và q" cùng đúng</span></div>
+          <div class="proof-row proof-conclusion"><span class="proof-expr">∴ p ∧ q</span><span class="proof-note"><b>Suy ra:</b> Gộp lại "p và q" cùng đúng</span></div>
         </div>
 
         <div class="proof-box">
           <div class="proof-title">⑧ Resolution (Hợp giải — Hay ra FE &amp; nền tảng Prolog!)</div>
           <div class="proof-row"><span class="proof-expr">p ∨ q</span><span class="proof-note">Tiền đề 1: p đúng hoặc q đúng</span></div>
           <div class="proof-row"><span class="proof-expr">¬p ∨ r</span><span class="proof-note">Tiền đề 2: p sai hoặc r đúng</span></div>
-          <div class="proof-row proof-conclusion"><span class="proof-expr">⇒ q ∨ r</span><span class="proof-note"><b>Suy ra:</b> Triệt tiêu cặp đối nhau p &amp; ¬p → còn q ∨ r</span></div>
+          <div class="proof-row proof-conclusion"><span class="proof-expr">∴ q ∨ r</span><span class="proof-note"><b>Suy ra:</b> Triệt tiêu cặp đối nhau p &amp; ¬p → còn q ∨ r</span></div>
         </div>
 
         <div class="proof-box" style="border-color:rgba(248,81,73,0.45);">
           <div class="proof-title fallacy">⚠️ 2 BẪY NGỤY BIỆN KINH ĐIỂN (FALLACIES — LẬP LUẬN SAI)</div>
           <div class="proof-row"><span class="proof-expr">p → q</span><span class="proof-note">Tiền đề 1: Nếu p thì q</span></div>
           <div class="proof-row"><span class="proof-expr">q</span><span class="proof-note">Tiền đề 2: Thấy có q (Affirming the Conclusion)</span></div>
-          <div class="proof-row proof-conclusion invalid"><span class="proof-expr">⇏ p</span><span class="proof-note"><b>SAI!</b> Không suy ra được p (q có thể đúng do nguyên nhân khác)</span></div>
+          <div class="proof-row proof-conclusion invalid"><span class="proof-expr">✗ ∴ p</span><span class="proof-note"><b>SAI!</b> Không suy ra được p (q có thể đúng do nguyên nhân khác)</span></div>
           <div style="height:8px;"></div>
           <div class="proof-row"><span class="proof-expr">p → q</span><span class="proof-note">Tiền đề 1: Nếu p thì q</span></div>
           <div class="proof-row"><span class="proof-expr">¬p</span><span class="proof-note">Tiền đề 2: Không có p (Denying the Hypothesis)</span></div>
-          <div class="proof-row proof-conclusion invalid"><span class="proof-expr">⇏ ¬q</span><span class="proof-note"><b>SAI!</b> Không suy ra được ¬q (không có p, q vẫn có thể đúng)</span></div>
+          <div class="proof-row proof-conclusion invalid"><span class="proof-expr">✗ ∴ ¬q</span><span class="proof-note"><b>SAI!</b> Không suy ra được ¬q (không có p, q vẫn có thể đúng)</span></div>
         </div>
 
         <ul style="margin-top:8px;">
